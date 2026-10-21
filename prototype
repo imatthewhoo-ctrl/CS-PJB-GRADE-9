@@ -1,1 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number System Hub</title>
+    <style>
+        :root {
+            --bg-primary: #121214;
+            --bg-surface: #1e1e24;
+            --accent: #ff8c00;
+            --text-main: #f5f5f7;
+            --text-muted: #a0a0aa;
+            --gray-disabled: #333338;
+            --correct: #2e7d32;
+            --incorrect: #c62828;
+            --border: #2c313c;
+        }
 
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background-color: var(--bg-surface);
+            border-radius: 16px;
+            padding: 24px;
+            margin: 20px auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 24px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 16px;
+        }
+
+        header h1 {
+            color: var(--accent);
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 12px;
+            background: #2a2a32;
+            border: none;
+            color: var(--text-main);
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .tab-btn.active {
+            background: var(--accent);
+            color: #000;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .guide-box {
+            background: rgba(255, 140, 0, 0.05);
+            border-left: 4px solid var(--accent);
+            padding: 16px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .calc-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .calc-layout {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .display-panel {
+            background: #121214;
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            border: 1px solid #2a2a32;
+        }
+
+        .base-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px;
+            border-bottom: 1px solid #1e1e24;
+            gap: 12px;
+        }
+
+        .base-label {
+            font-weight: bold;
+            font-size: 12px;
+            color: var(--text-muted);
+            width: 40px;
+            flex-shrink: 0;
+        }
+
+        .value-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-grow: 1;
+            justify-content: flex-end;
+            min-width: 0;
+        }
+
+        .base-value {
+            font-size: 18px;
+            font-family: monospace;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .copy-btn {
+            background: #2a2a32;
+            border: 1px solid var(--border);
+            color: var(--accent);
+            padding: 4px 8px;
+            font-size: 11px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .copy-btn:hover {
+            background: var(--accent);
+            color: #000;
+        }
+
+        .base-row.selected {
+            background: rgba(255, 140, 0, 0.1);
+            border-radius: 6px;
+        }
+
+        .base-row.selected .base-label {
+            color: var(--accent);
+        }
+
+        .base-selector {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .base-radio {
+            flex: 1;
+            text-align: center;
+        }
+
+        .base-radio input {
+            display: none;
+        }
+
+        .base-radio label {
+            display: block;
+            padding: 10px;
+            background: #2a2a32;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .base-radio input:checked + label {
+            background: var(--accent);
+            color: #000;
+        }
+
+        .keypad {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+
+        .key {
+            padding: 16px;
+            background: #2a2a32;
+            border: none;
+            color: var(--text-main);
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .key.action-key {
+            background: #3a3a45;
+            color: var(--accent);
+        }
+
+        .key.clear-key {
+            background: rgba(198, 40, 40, 0.15);
+            color: #ff5252;
+            border-color: transparent;
+        }
+
+        .key:disabled, .key.grayed-out {
+            background: var(--gray-disabled) !important;
+            color: #55555d !important;
+            opacity: 0.35;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .steps-panel {
+            background: #121214;
+            padding: 16px;
+            border-radius: 12px;
+            border: 1px solid #2a2a32;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .step-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 13px;
+        }
+
+        .step-table th, .step-table td {
+            border: 1px solid #333;
+            padding: 8px;
+            text-align: left;
+            font-family: monospace;
+        }
+
+        .quiz-card {
+            background: #121214;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #2a2a32;
+            text-align: center;
+        }
+
+        .quiz-question {
+            font-size: 18px;
+            margin-bottom: 16px;
+        }
+
+        .quiz-input-group {
+            display: flex;
+            max-width: 400px;
+            margin: 0 auto 16px auto;
+            gap: 8px;
+        }
+
+        .quiz-field {
+            flex: 1;
+            padding: 12px;
+            background: #1e1e24;
+            border: 1px solid #333;
+            color: #fff;
+            font-size: 18px;
+            border-radius: 6px;
+            text-transform: uppercase;
+        }
+
+        .quiz-submit {
+            padding: 12px 24px;
+            background: var(--accent);
+            border: none;
+            color: #000;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .feedback-banner {
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 12px;
+            font-weight: bold;
+            display: none;
+        }
+
+        .feedback-banner.success {
+            display: block;
+            background: rgba(46, 125, 50, 0.15);
+            color: #81c784;
+            border-left: 4px solid var(--correct);
+        }
+
+        .feedback-banner.error {
+            display: block;
+            background: rgba(198, 40, 40, 0.15);
+            color: #e57373;
+            border-left: 4px solid var(--incorrect);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Number System Hub</h1>
+        <p>Interactive Multi-Base Learning Platform</p>
+    </header>
+
+    <div class="tabs">
+        <button id="btn-tab-calc" class="tab-btn active" onclick="switchTab('calc')">Calculator</button>
+        <button id="btn-tab-quiz" class="tab-btn" onclick="switchTab('quiz')">Quiz Practice</button>
+    </div>
+
+    <!-- CALCULATOR LAYER -->
+    <div id="calc-tab" class="tab-content active">
+        <div class="guide-box">
+            💡 Changing the top system option (BIN, OCT, DEC, HEX) will instantly <b>turn unusable keypad buttons gray</b> and block clicks to lock out invalid configurations. Max capability limit is 255 (8-bit). Click the <b>Copy</b> button next to any value to save it to your clipboard.
+        </div>
+
+        <div class="calc-layout">
+            <div>
+                <div class="base-selector">
+                    <div class="base-radio">
+                        <input type="radio" id="src-bin" name="src-base" value="2" onchange="changeActiveBase('BIN', 2)">
+                        <label for="src-bin">BIN</label>
+                    </div>
+                    <div class="base-radio">
+                        <input type="radio" id="src-oct" name="src-base" value="8" onchange="changeActiveBase('OCT', 8)">
+                        <label for="src-oct">OCT</label>
+                    </div>
+                    <div class="base-radio">
+                        <input type="radio" id="src-dec" name="src-base" value="10" checked onchange="changeActiveBase('DEC', 10)">
+                        <label for="src-dec">DEC</label>
+                    </div>
+                    <div class="base-radio">
+                        <input type="radio" id="src-hex" name="src-base" value="16" onchange="changeActiveBase('HEX', 16)">
+                        <label for="src-hex">HEX</label>
+                    </div>
+                </div>
+
+                <div class="display-panel">
+                    <div class="base-row" id="row-BIN">
+                        <span class="base-label">BIN</span>
+                        <div class="value-wrapper">
+                            <span class="base-value" id="val-BIN">0</span>
+                            <button class="copy-btn" onclick="copyValue('val-BIN')">Copy</button>
+                        </div>
+                    </div>
+                    <div class="base-row" id="row-OCT">
+                        <span class="base-label">OCT</span>
+                        <div class="value-wrapper">
+                            <span class="base-value" id="val-OCT">0</span>
+                            <button class="copy-btn" onclick="copyValue('val-OCT')">Copy</button>
+                        </div>
+                    </div>
+                    <div class="base-row" id="row-DEC">
+                        <span class="base-label">DEC</span>
+                        <div class="value-wrapper">
+                            <span class="base-value" id="val-DEC">0</span>
+                            <button class="copy-btn" onclick="copyValue('val-DEC')">Copy</button>
+                        </div>
+                    </div>
+                    <div class="base-row" id="row-HEX">
+                        <span class="base-label">HEX</span>
+                        <div class="value-wrapper">
+                            <span class="base-value" id="val-HEX">0</span>
+                            <button class="copy-btn" onclick="copyValue('val-HEX')">Copy</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="keypad">
+                    <button class="key action-key" onclick="pressKey('D')">D</button>
+                    <button class="key action-key" onclick="pressKey('E')">E</button>
+                    <button class="key action-key" onclick="pressKey('F')">F</button>
+                    <button class="key clear-key" onclick="clearCalculator()">AC</button>
+                    <button class="key action-key" onclick="pressKey('A')">A</button>
+                    <button class="key action-key" onclick="pressKey('B')">B</button>
+                    <button class="key action-key" onclick="pressKey('C')">C</button>
+                    <button class="key" onclick="pressKey('9')">9</button>
+                    <button class="key" onclick="pressKey('8')">8</button>
+                    <button class="key" onclick="pressKey('7')">7</button>
+                    <button class="key" onclick="pressKey('6')">6</button>
+                    <button class="key" onclick="pressKey('5')">5</button>
+                    <button class="key" onclick="pressKey('4')">4</button>
+                    <button class="key" onclick="pressKey('3')">3</button>
+                    <button class="key" onclick="pressKey('2')">2</button>
+                    <button class="key" onclick="pressKey('1')">1</button>
+                    <button class="key" style="grid-column: span 4;" onclick="pressKey('0')">0</button>
+                </div>
+            </div>
+
+            <div class="steps-panel">
+                <h3 style="color:var(--accent); margin-bottom:12px;">Step-by-Step Conversion Table</h3>
+                <div id="steps-output">Enter numbers to generate structural calculation data loops.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- QUIZ LAYER -->
+    <div id="quiz-tab" class="tab-content">
+        <div class="quiz-card">
+            <div class="quiz-question" id="quiz-prompt">Generating question framework...</div>
+            <div class="quiz-input-group">
+                <input type="text" id="quiz-answer" class="quiz-field" placeholder="Answer string...">
+                <button class="quiz-submit" onclick="submitQuizAnswer()">Submit</button>
+            </div>
+            <div id="quiz-feedback" class="feedback-banner"></div>
+            <div id="quiz-score" style="margin-top:12px; font-size:14px; color:var(--text-muted);">Score: 0 / 0</div>
+            <div id="quiz-explanation-box" class="steps-panel" style="margin-top: 20px; display: none; text-align: left;"></div>
+        </div>
+    </div>
+</div>
+<script>
+    let activeBaseName = 'DEC';
+    let activeRadix = 10;
+    let internalDecimalValue = 0;
+
+    let quizCorrect = 0;
+    let quizTotal = 0;
+    let activeQuizAnswerKey = "";
+    let activeQuizDecimalValue = 0;
+    let activeQuizTargetRadix = 10;
+
+    window.onload = function() {
+        updateKeypadMasking();
+        generateQuizQuestion();
+    };
+
+    function switchTab(tabId) {
+        document.getElementById('calc-tab').classList.remove('active');
+        document.getElementById('quiz-tab').classList.remove('active');
+        document.getElementById('btn-tab-calc').classList.remove('active');
+        document.getElementById('btn-tab-quiz').classList.remove('active');
+        
+        if(tabId === 'calc') {
+            document.getElementById('calc-tab').classList.add('active');
+            document.getElementById('btn-tab-calc').classList.add('active');
+        } else {
+            document.getElementById('quiz-tab').classList.add('active');
+            document.getElementById('btn-tab-quiz').classList.add('active');
+        }
+    }
+
+    function copyValue(elementId) {
+        const textToCopy = document.getElementById(elementId).textContent;
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            alert("Copied to clipboard: " + textToCopy);
+        }).catch(err => {
+            console.error("Failed to copy text: ", err);
+        });
+    }
+
+    function updateKeypadMasking() {
+        document.querySelectorAll('.base-row').forEach(row => row.classList.remove('selected'));
+        document.getElementById(`row-${activeBaseName}`).classList.add('selected');
+
+        document.querySelectorAll('.key').forEach(keyButton => {
+            const val = keyButton.textContent;
+            if (val === 'AC') return;
+            
+            let isAllowed = false;
+            if (activeBaseName === 'BIN') isAllowed = (val === '0' || val === '1');
+            else if (activeBaseName === 'OCT') isAllowed = (val >= '0' && val <= '7');
+            else if (activeBaseName === 'DEC') isAllowed = (val >= '0' && val <= '9');
+            else if (activeBaseName === 'HEX') isAllowed = true;
+
+            if (isAllowed) {
+                keyButton.disabled = false;
+                keyButton.classList.remove('grayed-out');
+            } else {
+                keyButton.disabled = true;
+                keyButton.classList.add('grayed-out');
+            }
+        });
+    }
+
+    function changeActiveBase(baseName, radix) {
+        activeBaseName = baseName;
+        activeRadix = radix;
+        updateKeypadMasking();
+        updateDisplayValues();
+        generateMathematicalExplanations();
+    }
+
+    function pressKey(char) {
+        let currentStringValue = document.getElementById(`val-${activeBaseName}`).textContent;
+        if (currentStringValue === '0') currentStringValue = '';
+        
+        let testString = currentStringValue + char;
+        let parsedValue = parseInt(testString, activeRadix);
+        
+        if (parsedValue > 255) {
+            alert("Error: Maximum educational range limit is 255.");
+            return;
+        }
+
+        internalDecimalValue = parsedValue;
+        updateDisplayValues();
+        generateMathematicalExplanations();
+    }
+
+    function clearCalculator() {
+        internalDecimalValue = 0;
+        updateDisplayValues();
+        document.getElementById('steps-output').innerHTML = "Enter numbers to generate structural calculation data loops.";
+    }
+
+    function updateDisplayValues() {
+        document.getElementById('val-BIN').textContent = internalDecimalValue.toString(2).toUpperCase();
+        document.getElementById('val-OCT').textContent = internalDecimalValue.toString(8).toUpperCase();
+        document.getElementById('val-DEC').textContent = internalDecimalValue.toString(10).toUpperCase();
+        document.getElementById('val-HEX').textContent = internalDecimalValue.toString(16).toUpperCase();
+    }
+
+    function generateMathematicalExplanations() {
+        const outputBox = document.getElementById('steps-output');
+        if (internalDecimalValue === 0) {
+            outputBox.innerHTML = "Value is 0. Conversions remain baseline zero.";
+            return;
+        }
+
+        let html = "<p>Analyzing Decimal Value: <b>" + internalDecimalValue + "</b></p><br>";
+        html += "<strong>Binary Place Values:</strong><table class='step-table'><tr><th>128</th><th>64</th><th>32</th><th>16</th><th>8</th><th>4</th><th>2</th><th>1</th></tr><tr>";
+        
+        let tempVal = internalDecimalValue;
+        
+        for (let w = 128; w >= 1; w = w / 2) {
+            if (tempVal >= w) {
+                html += "<td style='color:var(--accent); font-weight:bold;'>1</td>";
+                tempVal -= w;
+            } else {
+                html += "<td>0</td>";
+            }
+        }
+        html += "</tr></table><br>";
+
+        html += "<strong>Successive Remainder Loop Chain:</strong><table class='step-table'><tr><th>Base</th><th>Division</th><th>Quotient</th><th>Remainder</th></tr>";
+        
+        let octTemp = internalDecimalValue;
+        while (octTemp > 0) {
+            html += "<tr><td>Octal (8)</td><td>" + octTemp + " ÷ 8</td><td>" + Math.floor(octTemp/8) + "</td><td><b>" + (octTemp % 8) + "</b></td></tr>";
+            octTemp = Math.floor(octTemp / 8);
+        }
+
+        let hexTemp = internalDecimalValue;
+        while (hexTemp > 0) {
+            let rem = hexTemp % 16;
+            html += "<tr><td>Hex (16)</td><td>" + hexTemp + " ÷ 16</td><td>" + Math.floor(hexTemp/16) + "</td><td><b>" + rem.toString(16).toUpperCase() + "</b></td></tr>";
+            hexTemp = Math.floor(hexTemp / 16);
+        }
+        
+        html += "</table>";
+        outputBox.innerHTML = html;
+    }
+
+    function generateQuizQuestion() {
+        const bases = [
+            { name: "Binary", radix: 2 },
+            { name: "Octal", radix: 8 },
+            { name: "Decimal", radix: 10 },
+            { name: "Hexadecimal", radix: 16 }
+        ];
+
+        let srcIdx = Math.floor(Math.random() * 4);
+        let tgtIdx;
+        do { tgtIdx = Math.floor(Math.random() * 4); } while (tgtIdx === srcIdx);
+
+        activeQuizDecimalValue = Math.floor(Math.random() * 254) + 1;
+        activeQuizTargetRadix = bases[tgtIdx].radix;
+        activeQuizAnswerKey = activeQuizDecimalValue.toString(activeQuizTargetRadix).toUpperCase();
+
+        document.getElementById('quiz-prompt').innerHTML = 
+            "Convert the <b>" + bases[srcIdx].name + "</b> value: <span style='color:var(--accent); font-family:monospace; font-size:22px; display:block; margin:8px 0;'>" + activeQuizDecimalValue.toString(bases[srcIdx].radix).toUpperCase() + "</span> into <b>" + bases[tgtIdx].name + "</b>";
+        
+        document.getElementById('quiz-answer').value = "";
+        document.getElementById('quiz-feedback').style.display = "none";
+        document.getElementById('quiz-explanation-box').style.display = "none";
+    }
+
+    function submitQuizAnswer() {
+        const input = document.getElementById('quiz-answer').value.trim().toUpperCase();
+        const banner = document.getElementById('quiz-feedback');
+        if(!input) return;
+
+        quizTotal++;
+        if(input === activeQuizAnswerKey) {
+            quizCorrect++;
+            banner.className = "feedback-banner success";
+            banner.textContent = "Correct! Great job.";
+            banner.style.display = "block";
+            setTimeout(generateQuizQuestion, 2000);
+        } else {
+            banner.className = "feedback-banner error";
+            banner.textContent = "Incorrect. The expected answer string was: " + activeQuizAnswerKey;
+            banner.style.display = "block";
+            renderQuizExplanation();
+        }
+        document.getElementById('quiz-score').textContent = "Score: " + quizCorrect + " / " + quizTotal;
+    }
+
+    function renderQuizExplanation() {
+        const box = document.getElementById('quiz-explanation-box');
+        box.style.display = "block";
+        let html = "<h4>🎓 Learning Review Breakdown:</h4>";
+        html += "<p>Decimal value size is <b>" + activeQuizDecimalValue + "</b>.</p><table class='step-table'>";
+        
+        let calcVal = activeQuizDecimalValue;
+        while(calcVal > 0) {
+            html += "<tr><td>" + calcVal + " ÷ " + activeQuizTargetRadix + "</td><td>Remainder: <b>" + (calcVal % activeQuizTargetRadix).toString(activeQuizTargetRadix).toUpperCase() + "</b></td></tr>";
+            calcVal = Math.floor(calcVal / activeQuizTargetRadix);
+        }
+        html += "</table><p style='margin-top:10px;'><button class='quiz-submit' style='width:100%;' onclick='generateQuizQuestion()'>Next Challenge</button></p>";
+        box.innerHTML = html;
+    }
+</script>
+</body>
+</html>
