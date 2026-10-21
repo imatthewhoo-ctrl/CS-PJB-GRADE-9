@@ -4,115 +4,122 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Number System Hub</title>
+    <!-- Textbook Fonts Integration -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Montserrat:wght@400;500;700;800&family=Open+Sans:ital,wght@0,400;0,600;1,400&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Your custom-selected neon cosmic color palette tokens */
-            --bg-primary: #130F26;       /* Deep Midnight Purple canvas */
-            --bg-surface: #1E1B4B;       /* Dark Indigo / Navy card panel surface */
-            --text-main: #F3F4F6;        /* Cool Off-White primary text reading layer */
-            --accent-purple: #8B5CF6;    /* Vibrant Violet secondary accent branding */
-            --accent-blue: #38BDF8;      /* Bright Electric Sky Blue primary highlight focal track */
-            --cta-pink: #F43F5E;         /* Neon Pink call-to-action popping banner highlight */
-            --gray-disabled: #181635;    /* Frosted midnight key lock mask for unusable buttons */
-            --border: #2E2963;           /* Subdued cosmic hairline partition lines */
-            --correct: #34D399;          /* Emerald success validation node */
-            --incorrect: #F87171;        /* Pastel crimson validation error flag */
+            /* Educational Typography Theme Colors */
+            --bg-primary: #121214;       /* Pure Obsidian Background */
+            --bg-surface: #1E1A2A;       /* Muted Deep Purple Structure */
+            --accent-dark: #A5B4FC;      /* Pale Lavender Blue Accent (CTAs) */
+            --accent-muted: #56507A;     /* Soft Structural Purple Tones */
+            --text-main: #EAEAEA;        /* Soft Off-White Textbook Typography */
+            --text-muted: #A8A2B5;       /* Subdued Explanatory Copy Tint */
+            --text-dark: #121214;        /* Dark Obsidian Ink for Light Overlays */
+            --gray-disabled: #161220;    /* Muted Inactive Component Masking */
+            --border: #3A354D;           /* Clean Hairline Grid Dividers */
+            --correct: #81C784;          /* Soft Instructional Affirmation Green */
+            --incorrect: #FF8A80;        /* Soft Instructional Rectification Red */
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
 
         body {
             background-color: var(--bg-primary);
             color: var(--text-main);
+            font-family: 'Open Sans', sans-serif;
+            font-size: 15px;
+            line-height: 1.6;
             padding: 20px;
         }
         .container {
             width: 100%;
-            max-width: 1100px;
+            max-width: 1150px;
             background-color: var(--bg-surface);
-            border-radius: 16px;
-            padding: 24px;
+            border-radius: 14px;
+            padding: 28px;
             margin: 20px auto;
-            box-shadow: 0 12px 40px rgba(10, 8, 25, 0.6);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
             border: 1px solid var(--border);
         }
 
         header {
             text-align: center;
-            margin-bottom: 24px;
-            border-bottom: 2px solid var(--accent-blue);
-            padding-bottom: 16px;
+            margin-bottom: 28px;
+            border-bottom: 2px solid var(--accent-dark);
+            padding-bottom: 18px;
             position: relative;
         }
 
         header h1 {
-            color: var(--accent-blue);
-            font-size: 28px;
-            margin-bottom: 8px;
-            letter-spacing: 0.5px;
-            text-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            color: var(--accent-dark);
+            font-size: 30px;
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
         }
 
         header p {
-            color: var(--text-main);
-            opacity: 0.8;
+            color: var(--text-muted);
+            font-style: italic;
             font-size: 14px;
         }
 
         .manual-trigger-btn {
             position: absolute;
-            right: 10px;
-            top: 10px;
-            background-color: var(--accent-blue);
-            color: var(--bg-primary);
+            right: 0;
+            top: 6px;
+            background-color: var(--accent-dark);
+            color: var(--text-dark);
             border: none;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-weight: bold;
+            padding: 8px 18px;
+            border-radius: 6px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 14px;
-            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
+            font-size: 13px;
+            box-shadow: 0 4px 14px rgba(165, 180, 252, 0.2);
             transition: all 0.2s ease;
         }
 
         .manual-trigger-btn:hover {
-            background-color: var(--accent-purple);
-            color: var(--text-main);
+            background-color: var(--text-main);
             transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
         }
 
         .tabs {
             display: flex;
-            gap: 8px;
-            margin-bottom: 20px;
+            gap: 10px;
+            margin-bottom: 24px;
         }
+
         .tab-btn {
             flex: 1;
-            padding: 12px;
-            background: #161338;
+            padding: 14px;
+            background: #161220;
             border: 1px solid var(--border);
-            color: var(--text-main);
-            font-weight: bold;
-            border-radius: 8px;
+            color: var(--text-muted);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            border-radius: 6px;
             cursor: pointer;
             transition: all 0.2s ease;
         }
 
         .tab-btn.active {
-            background: var(--accent-blue);
-            color: var(--bg-primary);
-            border-color: var(--accent-blue);
+            background: var(--accent-dark);
+            color: var(--text-dark);
+            border-color: var(--accent-dark);
         }
-
         .tab-content {
             display: none;
         }
@@ -124,30 +131,30 @@
         .calc-layout {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 20px;
+            gap: 24px;
         }
 
-        @media (min-width: 850px) {
+        @media (min-width: 900px) {
             .calc-layout {
-                grid-template-columns: 1.2fr 1fr;
+                grid-template-columns: 1.1fr 1fr;
             }
         }
 
         .display-panel {
             background: var(--bg-primary);
-            padding: 16px;
-            border-radius: 12px;
-            margin-bottom: 16px;
-            border: 2px solid var(--accent-blue);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border);
         }
 
         .base-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px;
-            border-bottom: 1px solid var(--border);
-            gap: 12px;
+            padding: 12px;
+            border-bottom: 1px solid rgba(58, 53, 77, 0.4);
+            gap: 16px;
         }
 
         .base-row:last-child {
@@ -155,60 +162,64 @@
         }
 
         .base-label {
-            font-weight: bold;
-            font-size: 14px;
-            color: var(--accent-blue);
-            width: 50px;
-            flex-shrink: 0;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 13px;
+            color: var(--text-muted);
             letter-spacing: 0.5px;
         }
+
         .value-wrapper {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             flex-grow: 1;
             justify-content: flex-end;
             min-width: 0;
         }
 
         .base-value {
-            font-size: 20px;
-            font-family: 'Consolas', 'Courier New', monospace;
-            font-weight: bold;
+            font-size: 21px;
+            font-family: 'Roboto Mono', monospace;
+            font-weight: 700;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            color: var(--text-main);
+            color: var(--accent-dark);
         }
 
         .copy-btn {
             background: var(--bg-surface);
             border: 1px solid var(--border);
-            color: var(--accent-blue);
+            color: var(--accent-dark);
             padding: 4px 10px;
-            font-size: 12px;
-            font-weight: bold;
+            font-size: 11px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
             border-radius: 4px;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.15s ease;
             flex-shrink: 0;
         }
 
         .copy-btn:hover {
-            background: var(--accent-purple);
+            background: var(--accent-muted);
             color: var(--text-main);
-            border-color: var(--accent-purple);
         }
 
         .base-row.selected {
-            background: rgba(56, 189, 248, 0.08);
+            background: rgba(165, 180, 252, 0.05);
             border-radius: 6px;
+        }
+
+        .base-row.selected .base-label {
+            color: var(--accent-dark);
         }
 
         .base-selector {
             display: flex;
-            gap: 8px;
-            margin-bottom: 16px;
+            gap: 10px;
+            margin-bottom: 20px;
         }
 
         .base-radio {
@@ -223,158 +234,238 @@
         .base-radio label {
             display: block;
             padding: 12px 6px;
-            background: #161338;
+            background: #161220;
             border: 1px solid var(--border);
             border-radius: 6px;
             cursor: pointer;
-            font-weight: bold;
-            font-size: 13px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 12px;
+            color: var(--text-muted);
             transition: all 0.2s;
         }
 
         .base-radio input:checked + label {
-            background: var(--accent-blue);
-            color: var(--bg-primary);
-            border-color: var(--accent-blue);
+            background: var(--accent-dark);
+            color: var(--text-dark);
+            border-color: var(--accent-dark);
         }
 
         .keypad {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
+            gap: 10px;
         }
 
         .key {
-            padding: 16px;
-            background: #161338;
+            padding: 16px 10px;
+            background: #161220;
             border: 1px solid var(--border);
             color: var(--text-main);
+            font-family: 'Roboto Mono', monospace;
             font-size: 18px;
-            font-weight: bold;
-            border-radius: 8px;
+            font-weight: 700;
+            border-radius: 6px;
             cursor: pointer;
             transition: background 0.1s;
         }
 
         .key.action-key {
-            background: var(--accent-purple);
-            color: var(--text-main);
-            border-color: var(--accent-purple);
+            background: var(--accent-muted);
+            border-color: rgba(165, 180, 252, 0.2);
         }
 
         .key.clear-key {
-            background: rgba(244, 63, 94, 0.15);
-            color: var(--cta-pink);
-            border-color: rgba(244, 63, 94, 0.3);
+            background: rgba(239, 83, 80, 0.1);
+            color: #ef5350;
+            border-color: rgba(239, 83, 80, 0.2);
         }
 
         .key:disabled, .key.grayed-out {
             background: var(--gray-disabled) !important;
-            color: #383561 !important;
-            border-color: #120F2B !important;
-            opacity: 0.2;
+            color: #3D384D !important;
+            border-color: #14111E !important;
+            opacity: 0.3;
             cursor: not-allowed;
             pointer-events: none;
         }
-
         .steps-panel {
             background: var(--bg-primary);
-            padding: 18px;
-            border-radius: 12px;
-            border: 2px solid var(--accent-blue);
-            max-height: 520px;
+            padding: 22px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            max-height: 560px;
             overflow-y: auto;
+        }
+
+        .steps-panel h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--accent-dark);
+            margin-bottom: 14px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 6px;
+        }
+
+        .textbook-text {
+            font-size: 14.5px;
+            color: var(--text-main);
+            margin-bottom: 14px;
+            text-align: justify;
+        }
+
+        .textbook-text b {
+            color: var(--accent-dark);
+        }
+
+        .textbook-example {
+            background: #161220;
+            border-left: 3px solid var(--accent-dark);
+            padding: 12px;
+            margin: 14px 0;
+            font-size: 13.5px;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .textbook-example p {
+            font-family: 'Roboto Mono', monospace;
+            color: var(--text-muted);
         }
 
         .step-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 10px;
+            margin: 14px 0;
             font-size: 13px;
-            background: var(--bg-surface);
+            background: #161220;
         }
 
         .step-table th, .step-table td {
             border: 1px solid var(--border);
-            padding: 8px;
+            padding: 10px;
             text-align: left;
         }
 
         .step-table th {
-            background: var(--accent-purple);
+            background: var(--accent-muted);
             color: var(--text-main);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
         }
 
-        .interactive-explanation {
-            background: rgba(139, 92, 246, 0.04);
-            border: 1px dashed var(--accent-purple);
-            border-radius: 8px;
-            padding: 12px;
-            margin-bottom: 14px;
-            font-size: 13px;
-            line-height: 1.5;
+        .step-table td {
+            font-family: 'Roboto Mono', monospace;
         }
 
-        .interactive-explanation h4 {
-            color: var(--accent-blue);
-            margin-bottom: 4px;
+        .textbook-note {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-top: 6px;
         }
 
         .summary-table-section {
-            margin-top: 24px;
+            margin-top: 28px;
             background: var(--bg-primary);
-            padding: 16px;
-            border-radius: 12px;
-            border: 2px solid var(--accent-blue);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
         }
 
         .summary-table-section h3 {
-            margin-bottom: 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
             font-size: 16px;
-            color: var(--accent-blue);
+            margin-bottom: 10px;
+            color: var(--accent-dark);
         }
 
         .quiz-card {
             background: var(--bg-primary);
-            padding: 24px;
-            border-radius: 12px;
-            border: 2px solid var(--accent-blue);
+            padding: 28px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
             text-align: center;
         }
 
         .quiz-question {
             font-size: 18px;
-            margin-bottom: 16px;
+            margin-bottom: 20px;
         }
 
         .quiz-input-group {
             display: flex;
-            max-width: 400px;
-            margin: 0 auto 16px auto;
-            gap: 8px;
+            max-width: 420px;
+            margin: 0 auto 20px auto;
+            gap: 10px;
         }
 
         .quiz-field {
             flex: 1;
             padding: 12px;
-            background: #161338;
+            background: #161220;
             border: 1px solid var(--border);
             color: var(--text-main);
+            font-family: 'Roboto Mono', monospace;
             font-size: 18px;
+            font-weight: 700;
             border-radius: 6px;
             text-transform: uppercase;
-            font-weight: bold;
             text-align: center;
+            outline: none;
+        }
+
+        .quiz-field:focus {
+            border-color: var(--accent-dark);
         }
 
         .quiz-submit {
-            padding: 12px 24px;
-            background: var(--accent-blue);
+            padding: 12px 28px;
+            background: var(--accent-dark);
             border: none;
-            color: var(--bg-primary);
-            font-weight: bold;
+            color: var(--text-dark);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
             border-radius: 6px;
             cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .quiz-submit:hover {
+            opacity: 0.9;
+        }
+
+        .feedback-banner {
+            padding: 14px;
+            border-radius: 6px;
+            margin-top: 14px;
+            font-weight: bold;
+            font-size: 14px;
+            display: none;
+            text-align: left;
+        }
+
+        .feedback-banner.success {
+            display: block;
+            background: rgba(129, 199, 132, 0.1);
+            color: var(--correct);
+            border-left: 4px solid var(--correct);
+        }
+
+        .feedback-banner.error {
+            display: block;
+            background: rgba(255, 138, 128, 0.1);
+            color: var(--incorrect);
+            border-left: 4px solid var(--incorrect);
+        }
+
+        .score-counter {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-top: 14px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
         }
 
         .modal-overlay {
@@ -389,62 +480,62 @@
             align-items: center;
             z-index: 1000;
             padding: 15px;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(4px);
         }
 
         .modal-content {
             background: var(--bg-surface);
-            border: 3px solid var(--accent-blue);
+            border: 2px solid var(--accent-dark);
             border-radius: 12px;
-            max-width: 650px;
+            max-width: 680px;
             width: 100%;
-            padding: 24px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            padding: 26px;
+            box-shadow: 0 24px 64px rgba(0,0,0,0.6);
             position: relative;
             max-height: 85vh;
             overflow-y: auto;
         }
 
         .modal-content h2 {
-            color: var(--accent-blue);
-            margin-bottom: 12px;
-            border-bottom: 2px solid var(--accent-purple);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--accent-dark);
+            margin-bottom: 14px;
+            border-bottom: 2px solid var(--accent-muted);
             padding-bottom: 6px;
             font-size: 22px;
         }
 
         .modal-content h3 {
-            margin: 14px 0 6px 0;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            margin: 16px 0 6px 0;
             font-size: 15px;
-            color: var(--accent-blue);
+            color: var(--accent-dark);
         }
 
         .modal-content p, .modal-content li {
             font-size: 14px;
-            line-height: 1.5;
+            line-height: 1.6;
             margin-bottom: 8px;
             color: var(--text-main);
         }
 
         .modal-content ul {
-            margin-left: 20px;
+            margin-left: 22px;
         }
 
         .close-modal-btn {
-            background-color: var(--accent-blue);
-            color: var(--bg-primary);
+            background-color: var(--accent-dark);
+            color: var(--text-dark);
             border: none;
-            padding: 10px 20px;
+            padding: 10px 22px;
             border-radius: 6px;
-            font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
             cursor: pointer;
             float: right;
             margin-top: 15px;
-        }
-
-        .close-modal-btn:hover {
-            background-color: var(--accent-purple);
-            color: var(--text-main);
         }
     </style>
 </head>
@@ -453,16 +544,16 @@
 <div class="container">
     <header>
         <h1>Number System Hub</h1>
-        <p>Grade 9 Interactive Number Systems Practice Suite</p>
-        <button class="manual-trigger-btn" onclick="openManual()">📖 Help / Manual</button>
+        <p>A Structured Introduction to Digital Logics & Radix Algebra</p>
+        <button class="manual-trigger-btn" onclick="openManual()">📖 User Manual</button>
     </header>
 
     <div class="tabs">
-        <button id="btn-tab-calc" class="tab-btn active" onclick="switchTab('calc')">Interactive Conversions</button>
-        <button id="btn-tab-quiz" class="tab-btn" onclick="switchTab('quiz')">Quiz Self-Test Mode</button>
+        <button id="btn-tab-calc" class="tab-btn active" onclick="switchTab('calc')">Interactive Laboratory</button>
+        <button id="btn-tab-quiz" class="tab-btn" onclick="switchTab('quiz')">Academic Assessment</button>
     </div>
 
-    <!-- CALCULATOR INTERFACE TAB -->
+    <!-- CALCULATOR CONTENT -->
     <div id="calc-tab" class="tab-content active">
         <div class="calc-layout">
             <div>
@@ -538,18 +629,22 @@
             </div>
             <div>
                 <div class="steps-panel" style="margin-bottom: 16px;">
-                    <div id="base-explanation-box" class="interactive-explanation"></div>
+                    <div id="base-explanation-box" class="textbook-text"></div>
                 </div>
                 <div class="steps-panel">
-                    <h3 style="color:var(--accent-blue); margin-bottom:6px; border-bottom:1px solid var(--border); padding-bottom:4px;">How It's Calculated:</h3>
-                    <div id="steps-output">Enter numbers to generate structural step explanations.</div>
+                    <h3>Analytical Derivations</h3>
+                    <div id="steps-output" class="textbook-text" style="color: var(--text-muted);">
+                        Select your baseline parameters on the left to reveal corresponding mathematical derivations and place-value structural mappings.
+                    </div>
                 </div>
             </div>
         </div>
 
         <div class="summary-table-section">
-            <h3>📊 Quick Conversion Matrix Summary (0 - 15)</h3>
-            <p style="font-size: 13px; margin-bottom: 10px; color: var(--accent-purple);">Here is how the first 16 values align across all four base formats. Observe the structural patterns!</p>
+            <h3>Reference Matrix Summary (0 - 15 Baseline Progression)</h3>
+            <p class="textbook-text" style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 8px;">
+                Review the comparative structure of standard numerical values across all core architectures. Observe how the characters line up perfectly:
+            </p>
             <table class="step-table" style="margin-top: 0;">
                 <thead>
                     <tr>
@@ -564,41 +659,41 @@
         </div>
     </div>
 
-    <!-- QUIZ INTERFACE TAB -->
+    <!-- QUIZ CONTENT -->
     <div id="quiz-tab" class="tab-content">
         <div class="quiz-card">
-            <div class="quiz-question" id="quiz-prompt">Generating question framework...</div>
+            <div class="quiz-question textbook-text" id="quiz-prompt" style="text-align: center; font-size: 17px;">Generating assignment...</div>
             <div class="quiz-input-group">
-                <input type="text" id="quiz-answer" class="quiz-field" placeholder="Type your answer...">
+                <input type="text" id="quiz-answer" class="quiz-field" placeholder="Enter solution..." autocomplete="off">
                 <button class="quiz-submit" onclick="submitQuizAnswer()">Submit</button>
             </div>
             <div id="quiz-feedback" class="feedback-banner"></div>
             <div id="quiz-score" class="score-counter">Score: 0 / 0</div>
-            <div id="quiz-explanation-box" class="steps-panel" style="margin-top: 20px; display: none; text-align: left;"></div>
+            <div id="quiz-explanation-box" class="steps-panel" style="margin-top: 24px; display: none; text-align: left;"></div>
         </div>
     </div>
 </div>
 
-<!-- HELP POPUP MODAL MANUAL -->
 <div id="manual-modal" class="modal-overlay" onclick="closeManualOnOverlay(event)">
     <div class="modal-content">
         <h2>📖 User Manual & Beginners Guide</h2>
-        <h3>🌟 Welcome to the Number System Hub!</h3>
-        <p>This workspace is designed to help Grade 9 students explore and understand the four major number systems used in computer science lessons.</p>
-        <h3>💡 How to Use the Interactive Converter:</h3>
+        <p>This textbook platform serves as an interactive sandbox to study the underlying behavior of digital number networks. Follow this checklist to begin your study session:</p>
+        
+        <h3>🔬 The Laboratory Laboratory</h3>
         <ul>
-            <li><b>Select an Input Base:</b> Use the top layout radio buttons (BIN, OCT, DEC, HEX) to choose your starting number system format.</li>
-            <li><b>Watch the Keypad Adapt:</b> Notice how buttons switch states! If you select <b>BIN (Binary)</b>, buttons 2-9 and A-F turn gray and lock up because binary numbers only use 0s and 1s. This safety rule keeps you from entering invalid digits!</li>
-            <li><b>Real-Time Visual Walkthroughs:</b> As you type numbers, notice how the right side panels show place-value columns and radix division charts right away. This teaches you how the conversions work step by step.</li>
-            <li><b>One-Click Saving:</b> Click the <b>Copy</b> button next to any value display row to quickly save that conversion directly to your clipboard.</li>
+            <li><b>Switch Base Anchors:</b> Click any base button (BIN, OCT, DEC, HEX) to choose your target input data layout.</li>
+            <li><b>Observe the Keypad Constraint Engine:</b> Notice how invalid digits are greyed out programmatically! When entering <b>Binary</b>, keys 2–9 and A–F freeze instantly because Base 2 mathematics acknowledges only 0 and 1. This prevents errors as you compose numbers!</li>
+            <li><b>Textbook Derivations:</b> Enter a value and read the derivations screen on the right. It parses your input using clear, textbook-style prose and charts.</li>
+            <li><b>Single-Click Clipboard Save:</b> Click the <b>Copy</b> button right next to any layout display field to lock that translated character string straight onto your system clipboard.</li>
         </ul>
-        <h3>📝 How to Use Quiz Practice Mode:</h3>
+
+        <h3>📝 Self-Assessment Practice Mode</h3>
         <ul>
-            <li>Click the <b>Quiz Practice Mode</b> tab at the top to switch panels.</li>
-            <li>The engine randomly assigns a conversion question between 0 and 255.</li>
-            <li>Type your calculated string in and hit <b>Submit</b>. If you make a mistake, don't worry! The tool will reveal a complete division remediation table showing you how to reach the right result next time.</li>
+            <li>Click the <b>Academic Assessment</b> tab at the top to clear the board.</li>
+            <li>The system dynamically constructs a customized base translation question bounded between 0 and 255.</li>
+            <li>Calculate the conversion manually on your paper and submit your answer. If you get stuck, the application will reveal a complete step-by-step division breakdown table to guide you back to the right answer.</li>
         </ul>
-        <button class="close-modal-btn" onclick="closeManual()">Got it, Close Manual</button>
+        <button class="close-modal-btn" onclick="closeManual()">Return to Laboratory</button>
     </div>
 </div>
 <script>
@@ -693,20 +788,20 @@
         let title = "", details = "";
         
         if (activeBaseName === 'BIN') {
-            title = "🚀 Binary System (Base 2)";
-            details = "Used inside computer processors. It has only two symbols: <b>0</b> and <b>1</b>. Each column value multiplies by 2 as you move left (1, 2, 4, 8, 16...).";
+            title = "The Binary Structural Concept (Base 2)";
+            details = "Binary is the internal language of computer circuitry. It uses only two digits, <b>0</b> and <b>1</b>, to represent 'off' and 'on' electrical states. Because there are only two digits, each place value column doubles as you move left, scaling exponentially from 1 to 2, 4, 8, 16, and beyond.";
         } else if (activeBaseName === 'OCT') {
-            title = "📦 Octal System (Base 8)";
-            details = "Uses eight digits: <b>0 through 7</b>. It groups bits together in chunks of three, acting as an intermediate step between binary and decimal formats.";
+            title = "The Octal Structural Concept (Base 8)";
+            details = "Octal utilizes exactly eight positional symbols, numbered <b>0 through 7</b>. In digital architecture, it acts as a shorthand to group long, complex binary strings into neat chunks of three bits each.";
         } else if (activeBaseName === 'DEC') {
-            title = "🔢 Decimal System (Base 10)";
-            details = "The human number system you use every day! Uses 10 symbols: <b>0 through 9</b>. Place values scale upward by powers of ten (1, 10, 100...).";
+            title = "The Decimal Structural Concept (Base 10)";
+            details = "Decimal is the baseline counting framework used by humans every day. It features 10 characters, running from <b>0 through 9</b>. Each position increases ten-fold as you move left (1s, 10s, 100s, 1000s), which likely evolved from counting on our ten fingers.";
         } else if (activeBaseName === 'HEX') {
-            title = "🎨 Hexadecimal System (Base 16)";
-            details = "Saves screen space by condensing binary codes! Since we need 16 symbols, it uses <b>0-9</b> for normal counts and letters <b>A=10, B=11, C=12, D=13, E=14, F=15</b>.";
+            title = "The Hexadecimal Structural Concept (Base 16)";
+            details = "Hexadecimal streamlines complex binary notation by grouping bits into chunks of four. Because it requires 16 unique symbols, it uses digits <b>0–9</b> for the first ten values, and letters <b>A through F</b> to represent values 10 through 15 (where A=10, B=11, C=12, D=13, E=14, F=15).";
         }
         
-        box.innerHTML = `<h4>${title}</h4><p>${details}</p>`;
+        box.innerHTML = `<h3 style='color:var(--accent-dark); font-family:\"Montserrat\", sans-serif; margin-bottom:6px;'>${title}</h3><p style='color:var(--text-main); font-size:14px; text-align:justify;'>${details}</p>`;
     }
 </script>
 <script>
@@ -718,7 +813,7 @@
         let parsedValue = parseInt(testString, activeRadix);
         
         if (parsedValue > 255) {
-            alert("Error: Maximum educational range limit is 255.");
+            alert("Boundary Alert: This system is capped at an 8-bit maximum range of 255.");
             return;
         }
 
@@ -730,7 +825,7 @@
     function clearCalculator() {
         internalDecimalValue = 0;
         updateDisplayValues();
-        document.getElementById('steps-output').innerHTML = "Enter numbers to generate structural step explanations.";
+        document.getElementById('steps-output').innerHTML = "Select your baseline parameters on the left to reveal corresponding mathematical derivations and place-value structural mappings.";
     }
 
     function updateDisplayValues() {
@@ -747,22 +842,24 @@
             return;
         }
 
-        let html = "<p style='margin-bottom:8px;'>Analyzing Decimal Value: <b>" + internalDecimalValue + "</b></p>";
-        html += "<strong>1. Binary Place Values Map:</strong><table class='step-table'><tr><th>Bit Column Weight</th><th>128</th><th>64</th><th>32</th><th>16</th><th>8</th><th>4</th><th>2</th><th>1</th></tr><tr><td>Bit Code Status</td>";
+        let html = "<p style='margin-bottom:12px;'>Let's analyze the properties of the baseline decimal value <b>" + internalDecimalValue + "</b>.</p>";
+        html += "<p><b>1. Positional Bit-Weight Evaluation</b><br>To convert a base-10 integer into binary, we test it against standard 8-bit positional weights. We write a <b>1</b> if the weight fits inside our remaining value, and a <b>0</b> if it does not:</p>";
+        
+        html += "<table class='step-table'><thead><tr><th>Bit Weights</th><th>128</th><th>64</th><th>32</th><th>16</th><th>8</th><th>4</th><th>2</th><th>1</th></tr></thead><tbody><tr><td>Code State</td>";
         
         let tempVal = internalDecimalValue;
-        // Replaced array logic completely to clear the browser compilation bottleneck
         for (let w = 128; w >= 1; w = w / 2) {
             if (tempVal >= w) {
-                html += "<td style='color:var(--accent-blue); font-weight:bold; background: rgba(56,189,248,0.15);'>1</td>";
+                html += "<td style='color:var(--accent-dark); font-weight:bold; background: rgba(165,180,252,0.15);'>1</td>";
                 tempVal -= w;
             } else {
                 html += "<td>0</td>";
             }
         }
-        html += "</tr></table><br>";
+        html += "</tr></tbody></table>";
 
-        html += "<strong>2. Successive Remainder Division Loop:</strong><table class='step-table'><tr><th>Target System Base</th><th>Division Expression</th><th>Quotient Out</th><th>Remainder Result</th></tr>";
+        html += "<p><b>2. Successive Remainder Radix Division</b><br>To convert our value into Octal or Hexadecimal, we divide the decimal integer repeatedly by the new target base. We record the integer quotient for the next line, and keep the leftover remainder as our digit:</p>";
+        html += "<table class='step-table'><thead><tr><th>Radix Type</th><th>Division Expression</th><th>Quotient Out</th><th>Remainder</th></tr></thead><tbody>";
         
         let octTemp = internalDecimalValue;
         while (octTemp > 0) {
@@ -773,11 +870,12 @@
         let hexTemp = internalDecimalValue;
         while (hexTemp > 0) {
             let rem = hexTemp % 16;
-            html += "<tr><td>Hexadecimal (Base 16)</td><td>" + hexTemp + " ÷ 16</td><td>" + Math.floor(hexTemp/16) + "</td><td><b>" + rem.toString(16).toUpperCase() + "</b></td></tr>";
+            let hexChar = rem.toString(16).toUpperCase();
+            html += "<tr><td>Hexadecimal (Base 16)</td><td>" + hexTemp + " ÷ 16</td><td>" + Math.floor(hexTemp/16) + "</td><td><b>" + hexChar + " (" + rem + ")</b></td></tr>";
             hexTemp = Math.floor(hexTemp / 16);
         }
         
-        html += "</table><p style='font-size:11px; color:var(--accent-purple); margin-top:6px;'><i>Tip: Read the remainders from the bottom row up to compile your converted string numbers!</i></p>";
+        html += "</tbody></table><p class='textbook-note'>Note: Read the remainders from the bottom row upward to build the final converted string!</p>";
         outputBox.innerHTML = html;
     }
 
@@ -812,7 +910,7 @@
         activeQuizAnswerKey = activeQuizDecimalValue.toString(activeQuizTargetRadix).toUpperCase();
 
         document.getElementById('quiz-prompt').innerHTML = 
-            "Convert the <b>" + bases[srcIdx].name + "</b> value: <span style='color:var(--accent-blue); font-family:monospace; font-size:22px; display:block; margin:8px 0;'>" + activeQuizDecimalValue.toString(bases[srcIdx].radix).toUpperCase() + "</span> into <b>" + bases[tgtIdx].name + "</b>:";
+            "Problem Challenge: Convert the <b>" + bases[srcIdx].name + "</b> value <b style='color:var(--accent-dark); font-family:monospace;'>" + activeQuizDecimalValue.toString(bases[srcIdx].radix).toUpperCase() + "</b> into its equivalent notation in the <b>" + bases[tgtIdx].name + "</b> system:";
         
         document.getElementById('quiz-answer').value = "";
         document.getElementById('quiz-feedback').style.display = "none";
@@ -828,12 +926,12 @@
         if(input === activeQuizAnswerKey) {
             quizCorrect++;
             banner.className = "feedback-banner success";
-            banner.textContent = "Correct answer! Excellent conversion calculation step coordination.";
+            banner.textContent = "Correct! Your conversion perfectly satisfies the radix algebra criteria.";
             banner.style.display = "block";
             setTimeout(generateQuizQuestion, 2000);
         } else {
             banner.className = "feedback-banner error";
-            banner.textContent = "Incorrect notation. The expected target answer string was: " + activeQuizAnswerKey;
+            banner.textContent = "Incorrect. The expected mathematical string solution was: " + activeQuizAnswerKey;
             banner.style.display = "block";
             renderQuizExplanation();
         }
@@ -843,15 +941,16 @@
     function renderQuizExplanation() {
         const box = document.getElementById('quiz-explanation-box');
         box.style.display = "block";
-        let html = "<h4>🎓 Step-by-Step Remediation Breakdown:</h4>";
-        html += "<p>This problem uses the baseline decimal value: <b>" + activeQuizDecimalValue + "</b>.</p><table class='step-table'>";
+        let html = "<h4>🎓 Textbook Remediation Matrix:</h4>";
+        html += "<p>The question prompt targets base decimal value <b>" + activeQuizDecimalValue + "</b>. Here is the successive division tree:</p><table class='step-table'><thead><tr><th>Operation Expression</th><th>Leftover Remainder</th></tr></thead><tbody>";
         
         let calcVal = activeQuizDecimalValue;
         while(calcVal > 0) {
-            html += "<tr><td>" + calcVal + " ÷ " + activeQuizTargetRadix + "</td><td>Remainder: <b>" + (calcVal % activeQuizTargetRadix).toString(activeQuizTargetRadix).toUpperCase() + "</b></td></tr>";
+            let rem = calcVal % activeQuizTargetRadix;
+            html += "<tr><td>" + calcVal + " ÷ " + activeQuizTargetRadix + "</td><td>Remainder: <b>" + rem.toString(activeQuizTargetRadix).toUpperCase() + "</b></td></tr>";
             calcVal = Math.floor(calcVal / activeQuizTargetRadix);
         }
-        html += "</table><button class='quiz-submit' style='margin-top:12px; width:100%;' onclick='generateQuizQuestion()'>Next Challenge</button>";
+        html += "</tbody></table><button class='quiz-submit' style='margin-top:12px; width:100%;' onclick='generateQuizQuestion()'>Advance to Next Problem</button>";
         box.innerHTML = html;
     }
 </script>
