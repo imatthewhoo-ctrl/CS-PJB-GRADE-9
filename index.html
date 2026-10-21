@@ -3,27 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Number System Learning Tool</title>
+    <title>Number System Hub</title>
     <!-- Textbook Quality Typography Embedding -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Open+Sans:wght@400;600&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-primary: #121214;       
-            --bg-surface: #1E1A2A;       
-            --accent-dark: #A5B4FC;      
-            --accent-muted: #5650A6;     
-            --accent-fresh: #241D52;     
-            --text-main: #EAEAEA;        
-            --text-muted: #A3A3C2;       
-            --text-light: #121214;       
-            --gray-disabled: #181522;    
-            --border: #3A355C;           
-            --correct: #81C784;          
-            --incorrect: #FF8A80;        
+            --bg-primary: #121214;       /* Pure Obsidian Canvas */
+            --bg-surface: #1E1A2A;       /* Muted Deep Purple Cards */
+            --accent-dark: #A5B4FC;      /* Pale Lavender Blue Tones */
+            --accent-muted: #5650A6;     /* Deep Royal Secondary */
+            --accent-fresh: #241D52;     /* Dark Velvet Tint */
+            --text-main: #EAEAEA;        /* Soft Off-White Core Typography */
+            --text-muted: #A3A3C2;       /* Relaxed Slate Annotation */
+            --text-light: #121214;       /* Heavy Core Overlays */
+            --gray-disabled: #181522;    /* Recessed Inactive Key Mask */
+            --border: #3A355C;           /* High-Definition Divider Linework */
+            --correct: #81C784;          /* Soft Emerald Glowing Status */
+            --incorrect: #FF8A80;        /* Soft Crimson Fault Marker */
         }
-
         * {
             box-sizing: border-box;
             margin: 0;
@@ -34,46 +33,66 @@
             background-color: var(--bg-primary);
             color: var(--text-main);
             font-family: 'Open Sans', sans-serif;
-            padding: 24px;
+            padding: 12px;
             line-height: 1.6;
         }
+
+        @media (min-width: 600px) {
+            body { padding: 24px; }
+        }
+
         .container {
             width: 100%;
             max-width: 1050px;
             background-color: var(--bg-surface);
             border-radius: 20px;
-            padding: 32px;
-            margin: 20px auto;
+            padding: 16px;
+            margin: 10px auto;
             box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
             border: 1px solid var(--border);
         }
 
+        @media (min-width: 600px) {
+            .container { padding: 32px; margin: 20px auto; }
+        }
         header {
             text-align: center;
-            margin-bottom: 32px;
+            margin-bottom: 24px;
             border-bottom: 2px solid var(--border);
             padding-bottom: 20px;
-            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        @media (min-width: 768px) {
+            header {
+                flex-direction: row;
+                justify-content: space-between;
+                text-align: left;
+                align-items: center;
+            }
         }
 
         header h1 {
             font-family: 'Montserrat', sans-serif;
             font-weight: 800;
             color: var(--accent-dark);
-            font-size: 32px;
-            margin-bottom: 8px;
+            font-size: 24px;
             letter-spacing: -0.5px;
+        }
+
+        @media (min-width: 600px) {
+            header h1 { font-size: 32px; }
         }
 
         header p {
             color: var(--text-muted);
-            font-size: 15px;
+            font-size: 14px;
         }
 
         .manual-trigger-btn {
-            position: absolute;
-            right: 0;
-            top: 10px;
             background-color: var(--accent-dark);
             color: var(--text-light);
             border: none;
@@ -88,30 +107,35 @@
             font-size: 13px;
             box-shadow: 0 4px 14px rgba(165, 180, 252, 0.3);
             transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            width: fit-content;
         }
 
         .manual-trigger-btn:hover {
             background-color: #C7D2FE;
             transform: translateY(-2px);
         }
-
         .tabs {
             display: flex;
-            gap: 12px;
-            margin-bottom: 28px;
+            gap: 8px;
+            margin-bottom: 24px;
         }
+
         .tab-btn {
             flex: 1;
-            padding: 14px;
+            padding: 12px 6px;
             background: #151221;
             border: 1px solid var(--border);
             color: var(--text-muted);
             font-family: 'Montserrat', sans-serif;
             font-weight: 600;
-            font-size: 14px;
+            font-size: 12px;
             border-radius: 10px;
             cursor: pointer;
             transition: all 0.2s;
+        }
+
+        @media (min-width: 600px) {
+            .tab-btn { padding: 14px; font-size: 14px; }
         }
 
         .tab-btn:hover {
@@ -137,25 +161,38 @@
         .calc-layout {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 28px;
+            gap: 24px;
             margin-bottom: 24px;
         }
-
         .display-panel {
             background: var(--bg-primary);
-            padding: 20px;
+            padding: 12px;
             border-radius: 14px;
             margin-bottom: 20px;
             border: 2px solid var(--border);
         }
 
+        @media (min-width: 600px) {
+            .display-panel { padding: 20px; }
+        }
+
         .base-row {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 12px 6px;
             border-bottom: 1px solid rgba(58, 53, 92, 0.4);
-            gap: 16px;
+            gap: 8px;
+        }
+
+        @media (min-width: 480px) {
+            .base-row {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                padding: 12px;
+                gap: 16px;
+            }
         }
 
         .base-row:last-child {
@@ -173,7 +210,6 @@
             font-weight: 600;
             font-size: 13px;
             color: var(--text-muted);
-            width: 50px;
         }
 
         .base-row.selected .base-label {
@@ -183,13 +219,21 @@
             display: flex;
             align-items: center;
             gap: 14px;
-            flex-grow: 1;
-            justify-content: flex-end;
+            width: 100%;
+            justify-content: space-between;
             min-width: 0;
         }
 
+        @media (min-width: 480px) {
+            .value-wrapper {
+                width: auto;
+                flex-grow: 1;
+                justify-content: flex-end;
+            }
+        }
+
         .base-value {
-            font-size: 20px;
+            font-size: 16px;
             font-family: 'Roboto Mono', monospace;
             font-weight: 700;
             white-space: nowrap;
@@ -197,6 +241,10 @@
             text-overflow: clip;
             color: var(--text-main);
             max-width: 100%;
+        }
+
+        @media (min-width: 600px) {
+            .base-value { font-size: 20px; }
         }
 
         .copy-btn {
@@ -219,22 +267,25 @@
         }
 
         .base-selector {
-            display: flex;
-            gap: 10px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
             margin-bottom: 20px;
         }
 
-        .base-radio {
-            flex: 1;
+        @media (min-width: 480px) {
+            .base-selector {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 10px;
+            }
         }
-
         .base-radio input {
             display: none;
         }
 
         .base-radio label {
             display: block;
-            padding: 14px 6px;
+            padding: 12px 4px;
             background: #151221;
             border: 1px solid var(--border);
             border-radius: 8px;
@@ -242,9 +293,13 @@
             cursor: pointer;
             font-family: 'Montserrat', sans-serif;
             font-weight: 600;
-            font-size: 13px;
+            font-size: 12px;
             color: var(--text-muted);
             transition: all 0.2s;
+        }
+
+        @media (min-width: 600px) {
+            .base-radio label { padding: 14px 6px; font-size: 13px; }
         }
 
         .base-radio input:checked + label {
@@ -252,23 +307,32 @@
             color: var(--text-light);
             border-color: var(--accent-dark);
         }
+
         .keypad {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
+            gap: 8px;
+        }
+
+        @media (min-width: 600px) {
+            .keypad { gap: 10px; }
         }
 
         .key {
-            padding: 20px 10px;
+            padding: 14px 4px;
             background: #151221;
             border: 1px solid var(--border);
             color: var(--text-main);
             font-family: 'Roboto Mono', monospace;
-            font-size: 20px;
+            font-size: 16px;
             font-weight: 700;
             border-radius: 10px;
             cursor: pointer;
             transition: background 0.15s, transform 0.1s;
+        }
+
+        @media (min-width: 600px) {
+            .key { padding: 20px 10px; font-size: 20px; }
         }
 
         .key:active {
@@ -295,7 +359,6 @@
             cursor: not-allowed;
             transform: none !important;
         }
-
         .explanation-trigger-pane {
             text-align: center;
             margin: 20px 0;
@@ -305,10 +368,10 @@
             background: var(--accent-fresh);
             border: 2px solid var(--accent-dark);
             color: var(--accent-dark);
-            padding: 14px 28px;
+            padding: 14px 16px;
             font-family: 'Montserrat', sans-serif;
             font-weight: 600;
-            font-size: 15px;
+            font-size: 13px;
             border-radius: 30px;
             cursor: pointer;
             transition: all 0.2s ease;
@@ -316,13 +379,18 @@
             width: 100%;
         }
 
+        @media (min-width: 600px) {
+            .popup-toggle-btn { padding: 14px 28px; font-size: 15px; }
+        }
+
         .popup-toggle-btn:hover {
             background: var(--accent-dark);
             color: var(--text-light);
         }
+
         .steps-drawer-modal {
             background: #161322;
-            padding: 24px;
+            padding: 16px;
             border-radius: 16px;
             border: 2px solid var(--accent-dark);
             margin-top: 20px;
@@ -330,20 +398,28 @@
             box-shadow: inset 0 4px 20px rgba(0,0,0,0.4);
         }
 
+        @media (min-width: 600px) {
+            .steps-drawer-modal { padding: 24px; }
+        }
+
         .steps-drawer-modal h3 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 18px;
+            font-size: 16px;
             margin-bottom: 20px;
             color: var(--accent-dark);
             border-bottom: 1px solid var(--border);
             padding-bottom: 8px;
         }
 
+        @media (min-width: 600px) {
+            .steps-drawer-modal h3 { font-size: 18px; }
+        }
+
         .conversion-block {
             background: var(--bg-primary);
             border: 1px solid var(--border);
             border-radius: 10px;
-            padding: 20px;
+            padding: 16px;
             margin-bottom: 24px;
             width: 100%;
             overflow: hidden;
@@ -351,7 +427,7 @@
 
         .conversion-block h4 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 16px;
+            font-size: 14px;
             color: var(--accent-dark);
             margin-bottom: 12px;
             text-transform: uppercase;
@@ -360,11 +436,18 @@
             padding-left: 8px;
         }
 
-        /* ABSOLUTE FIX: Stops long numerical calculations from exploding outward */
+        @media (min-width: 600px) {
+            .conversion-block h4 { font-size: 16px; }
+        }
         .conversion-block p, .conversion-block div {
             word-wrap: break-word;
             word-break: break-all;
             white-space: normal;
+            font-size: 13px;
+        }
+
+        @media (min-width: 600px) {
+            .conversion-block p, .conversion-block div { font-size: 14px; }
         }
 
         .table-scroll-wrapper {
@@ -374,6 +457,7 @@
             border: 1px solid var(--border);
             border-radius: 8px;
             background: #151221;
+            -webkit-overflow-scrolling: touch;
         }
 
         .visual-box-container {
@@ -428,46 +512,68 @@
         .summary-table-section {
             margin-top: 24px;
             background: var(--bg-primary);
-            padding: 20px;
+            padding: 16px;
             border-radius: 12px;
             border: 2px solid var(--border);
+        }
+
+        @media (min-width: 600px) {
+            .summary-table-section { padding: 20px; }
         }
 
         .summary-table-section h3 {
             font-family: 'Montserrat', sans-serif;
             margin-bottom: 10px;
-            font-size: 16px;
+            font-size: 15px;
             color: var(--accent-dark);
+        }
+
+        @media (min-width: 600px) {
+            .summary-table-section h3 { font-size: 16px; }
         }
 
         .quiz-card {
             background: var(--bg-primary);
-            padding: 32px;
+            padding: 20px;
             border-radius: 16px;
             border: 2px solid var(--border);
             text-align: center;
         }
 
+        @media (min-width: 600px) {
+            .quiz-card { padding: 32px; }
+        }
+
         .quiz-question {
-            font-size: 20px;
+            font-size: 16px;
             margin-bottom: 20px;
             font-family: 'Open Sans', sans-serif;
         }
 
+        @media (min-width: 600px) {
+            .quiz-question { font-size: 20px; }
+        }
+
         .quiz-input-group {
             display: flex;
+            flex-direction: column;
+            width: 100%;
             max-width: 440px;
             margin: 0 auto 20px auto;
             gap: 10px;
         }
 
+        @media (min-width: 400px) {
+            .quiz-input-group { flex-direction: row; }
+        }
+
         .quiz-field {
-            flex: 1;
+            width: 100%;
             padding: 14px;
             background: #151221;
             border: 1px solid var(--border);
             color: #fff;
-            font-size: 20px;
+            font-size: 18px;
             font-family: 'Roboto Mono', monospace;
             border-radius: 8px;
             text-transform: uppercase;
@@ -475,11 +581,15 @@
             outline: none;
         }
 
+        @media (min-width: 600px) {
+            .quiz-field { font-size: 20px; }
+        }
+
         .quiz-field:focus {
             border-color: var(--accent-dark);
         }
-
         .quiz-submit {
+            width: 100%;
             padding: 14px 28px;
             background: var(--accent-dark);
             border: none;
@@ -488,14 +598,24 @@
             font-weight: 600;
             border-radius: 8px;
             cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        @media (min-width: 400px) {
+            .quiz-submit { width: auto; }
         }
 
         .quiz-controls {
             display: flex;
+            flex-direction: column;
             justify-content: center;
-            gap: 16px;
+            gap: 12px;
             margin-top: 16px;
             align-items: center;
+        }
+
+        @media (min-width: 480px) {
+            .quiz-controls { flex-direction: row; gap: 16px; }
         }
 
         .restart-btn {
@@ -522,6 +642,11 @@
             font-weight: bold;
             display: none;
             text-align: left;
+            font-size: 13px;
+        }
+
+        @media (min-width: 600px) {
+            .feedback-banner { font-size: 14px; }
         }
 
         .feedback-banner.success {
@@ -550,6 +675,7 @@
             align-items: center;
             z-index: 1000;
             backdrop-filter: blur(4px);
+            padding: 12px;
         }
 
         .modal-content {
@@ -558,22 +684,34 @@
             border-radius: 16px;
             max-width: 600px;
             width: 100%;
-            padding: 28px;
+            padding: 20px;
             max-height: 85vh;
             overflow-y: auto;
+        }
+
+        @media (min-width: 600px) {
+            .modal-content { padding: 28px; }
         }
 
         .modal-content h2 {
             font-family: 'Montserrat', sans-serif;
             color: var(--accent-dark);
             margin-bottom: 16px;
-            font-size: 24px;
+            font-size: 20px;
+        }
+
+        @media (min-width: 600px) {
+            .modal-content h2 { font-size: 24px; }
         }
 
         .modal-content li {
-            margin-left: 20px;
+            margin-left: 16px;
             margin-bottom: 8px;
-            font-size: 14px;
+            font-size: 13px;
+        }
+
+        @media (min-width: 600px) {
+            .modal-content li { margin-left: 20px; font-size: 14px; }
         }
 
         .close-modal-btn {
@@ -587,6 +725,11 @@
             margin-top: 20px;
             cursor: pointer;
             float: right;
+            width: 100%;
+        }
+
+        @media (min-width: 400px) {
+            .close-modal-btn { width: auto; }
         }
     </style>
 </head>
@@ -594,9 +737,11 @@
 
 <div class="container">
     <header>
-        <h1>Number System Hub</h1>
-        <p>Interactive 64-Bit Textbook Conceptual Architecture Suite</p>
-        <button class="manual-trigger-btn" onclick="openManual()">User Manual</button>
+        <div>
+            <h1>Number System Hub</h1>
+            <p>Interactive 64-Bit Textbook Conceptual Architecture Suite</p>
+        </div>
+        <button class="manual-trigger-btn" onclick="openManual()">📖 User Manual</button>
     </header>
 
     <div class="tabs">
@@ -656,17 +801,18 @@
         </div>
 
         <div class="explanation-trigger-pane">
-            <button class="popup-toggle-btn" id="drawer-toggle-btn" onclick="toggleExplanationDrawer()">Click to Reveal Step-by-Step Explanations Underneath</button>
+            <button class="popup-toggle-btn" id="drawer-toggle-btn" onclick="toggleExplanationDrawer()">👇 Click to Reveal Step-by-Step Explanations Underneath</button>
         </div>
 
         <!-- COLLAPSIBLE EDUCATIONAL CONTAINER -->
         <div class="steps-drawer-modal" id="explanation-drawer">
-            <h3>Deep Conceptual Breakdown Pipeline</h3>
+            <h3>📖 Deep Conceptual Breakdown Pipeline</h3>
             <div id="steps-output">Enter numbers above to compile visual explanation charts.</div>
         </div>
 
         <div class="table-scroll-wrapper" style="margin-top: 24px; padding: 20px;">
-            <h3 style="font-family:'Montserrat',sans-serif; color:var(--accent-dark); margin-bottom:10px; font-size:16px;">Quick Conversion Matrix Summary (0 - 15)</h3>
+            <h3 style="font-family:'Montserrat',sans-serif; color:var(--accent-dark); margin-bottom:10px; font-size:16px;">📊 Quick Conversion Matrix Summary (0 - 15)</h3>
+            <p style="font-size: 13px; margin-bottom: 12px; color: var(--text-muted);">Observe how values lower than 16 pattern sync symmetrically across multi-radix configurations:</p>
             <table class="step-table">
                 <thead>
                     <tr>
@@ -693,28 +839,28 @@
             
             <div class="quiz-controls">
                 <div id="quiz-score" style="font-family:'Montserrat',sans-serif; font-weight:600; font-size:15px; color:var(--accent-dark);">Success Register: 0 / 0 (0%)</div>
-                <button class="restart-btn" onclick="resetQuizLogMetrics()">Reset Progress</button>
+                <button class="restart-btn" onclick="resetQuizLogMetrics()">🔄 Reset Progress</button>
             </div>
             
-            <div class="table-scroll-wrapper" id="quiz-explanation-wrapper" style="display:none; padding:16px;">
+            <div class="table-scroll-wrapper" id="quiz-explanation-wrapper" style="display:none; padding:16px; margin-top:20px;">
                 <div id="quiz-explanation-box"></div>
             </div>
         </div>
     </div>
 </div>
-
 <div id="manual-modal" class="modal-overlay" onclick="closeManualOnOverlay(event)">
     <div class="modal-content">
-        <h2>System Operator Manual</h2>
-        <p style="margin-bottom: 12px; font-size: 14px; color: var(--text-muted);">Welcome to the textbook-grade 64-bit multi-base number execution layout workspace.</p>
+        <h2>📖 System Operator Manual</h2>
+        <p style="margin-bottom: 12px; font-size: 14px; color: var(--text-muted);">Welcome to the textbook-grade conceptual 64-bit multi-base number execution layout workspace.</p>
         <ul>
-            <li>64-Bit Range Scale Architecture: Handles massive integer strings cleanly up to 2<sup>64</sup>-1 using modern precision BigInt processing algorithms.</li>
-            <li>No Flow-off Layout Wrap: Complete word-wrapping safeguards prevent high numeric values from flying off your viewport box bounds.</li>
-            <li>Reactive Safeguard Keypad: Instantly locks layout choices to completely block syntax mistakes before they can occur.</li>
+            <li><b>64-Bit Range Scale Architecture:</b> Standard parsing engines experience truncation at 8 bits or 32 bits. This build utilizes custom arbitrary-precision architecture loops, processing string buffers cleanly all the way up to $2^{64}-1$.</li>
+            <li><b>Reactive Safeguard Keypad:</b> Changing the input mode filters the keypad parameters natively, hiding unauthorized buttons to keep out entry syntax bugs before errors can happen.</li>
+            <li><b>Real-Time Interactive Drawer:</b> Toggle the drawer button to run explicit conversions targeting the current entry state, mapping mathematical step proofs dynamically below.</li>
         </ul>
         <button class="close-modal-btn" onclick="closeManual()">Close Manual Workspace</button>
     </div>
 </div>
+
 <script>
     let activeBaseName = 'DEC';
     let activeRadix = 10;
@@ -756,14 +902,13 @@
         
         if (explanationDrawerOpen) {
             drawer.style.display = 'block';
-            btn.textContent = "Click to Collapse Mathematical Explanations Pane";
+            btn.textContent = "👆 Click to Collapse Mathematical Explanations Pane";
             generateMathematicalExplanations();
         } else {
             drawer.style.display = 'none';
-            btn.textContent = "Click to Reveal Step-by-Step Explanations Underneath";
+            btn.textContent = "👇 Click to Reveal Step-by-Step Explanations Underneath";
         }
     }
-
     function openManual() { document.getElementById('manual-modal').style.display = 'flex'; }
     function closeManual() { document.getElementById('manual-modal').style.display = 'none'; }
     function closeManualOnOverlay(e) { if(e.target.id === 'manual-modal') closeManual(); }
@@ -785,6 +930,7 @@
         }
         return val;
     }
+
     function updateKeypadMasking() {
         document.querySelectorAll('.base-row').forEach(row => row.classList.remove('selected'));
         document.getElementById(`row-${activeBaseName}`).classList.add('selected');
@@ -842,7 +988,6 @@
         document.getElementById('val-DEC').textContent = internalDecimalValue.toString(10).toUpperCase();
         document.getElementById('val-HEX').textContent = internalDecimalValue.toString(16).toUpperCase();
     }
-
     function generateMathematicalExplanations() {
         const outputBox = document.getElementById('steps-output');
         if (internalDecimalValue === 0n) {
@@ -852,8 +997,8 @@
 
         let html = `<p style='margin-bottom:20px; font-family:"Montserrat",sans-serif; font-weight:600; font-size:15px; color:var(--accent-dark); border-bottom:1px dashed var(--border); padding-bottom:8px;'>Analyzing Calculations for Decimal Size: <span style="word-break:break-all;">${internalDecimalValue.toString(10)}</span></p>`;
 
-        // BLOCK 1: TARGETING BINARY WITH HORIZONTAL SCROLL SAFEGUARDS
-        html += `<div class='conversion-block'><h4>Converting to BINARY (Base 2)</h4>`;
+        // BLOCK 1: TARGETING BINARY
+        html += `<div class='conversion-block'><h4>➡️ Converting to BINARY (Base 2)</h4>`;
         html += `<p>Computers split values into baskets of powers of 2. If the basket weight fits inside our remaining value, we activate it with a 1, otherwise we write a 0. Here are the low-order byte columns:</p>`;
         html += `<div class='table-scroll-wrapper'><div class='visual-box-container'>`;
         let binStr = internalDecimalValue.toString(2);
@@ -872,8 +1017,8 @@
         }
         html += `</div></div><p style='font-size:14px; margin-top:8px; color:var(--text-muted);'>Full continuous code token string: <span style='font-family:"Roboto Mono", monospace; color:var(--accent-dark); word-break: break-all;'>${completeBinStr}</span></p></div>`;
 
-        // BLOCK 2: TARGETING DECIMAL WITH SCROLL SAFETY WRAPPERS
-        html += `<div class='conversion-block'><h4>Converting to DECIMAL (Base 10)</h4>`;
+        // BLOCK 2: TARGETING DECIMAL
+        html += `<div class='conversion-block'><h4>➡️ Converting to DECIMAL (Base 10)</h4>`;
         html += `<p>We take each digit symbol from our current number string and multiply it by its place-value column weight:</p>`;
         html += `<div class='table-scroll-wrapper'><table class='step-table'><tr><th>Source Character</th>`;
         let srcRepresentationStr = internalDecimalValue.toString(activeRadix).toUpperCase();
@@ -881,8 +1026,9 @@
         html += `</tr><tr><th>Radix Multiplier</th>`;
         for(let i=srcRepresentationStr.length-1; i>=0; i--) html += `<td>${activeRadix}<sup>${i}</sup></td>`;
         html += `</tr></table></div><p style='margin-top:12px; font-size:14px;'>Adding these positional products together builds our standard human base-10 value: <span style="word-break:break-all;"><b>${internalDecimalValue.toString(10)}</b></span></p></div>`;
-        // BLOCK 3: TARGETING OCTAL CONVERSION
-        html += `<div class='conversion-block'><h4>Converting to OCTAL (Base 8)</h4>`;
+
+        // BLOCK 3: TARGETING OCTAL
+        html += `<div class='conversion-block'><h4>➡️ Converting to OCTAL (Base 8)</h4>`;
         html += `<p>We repeatedly divide our decimal payload number by 8. We save the remainder from each step, then read them from the bottom row up to get our answer:</p>`;
         html += `<div class='table-scroll-wrapper'><table class='step-table'><tr><th>Division Formula</th><th>Whole Quotient</th><th>Leftover Remainder</th></tr>`;
         let oTemp = internalDecimalValue;
@@ -892,8 +1038,8 @@
         }
         html += `</table></div><p style='margin-top:12px; font-size:14px;'>Resulting base-8 string value: <span style='color:var(--accent-dark); font-weight:bold; word-break:break-all;'>${internalDecimalValue.toString(8)}</span></p></div>`;
 
-        // BLOCK 4: TARGETING HEXADECIMAL CONVERSION
-        html += `<div class='conversion-block'><h4>Converting to HEXADECIMAL (Base 16)</h4>`;
+        // BLOCK 4: TARGETING HEXADECIMAL
+        html += `<div class='conversion-block'><h4>➡️ Converting to HEXADECIMAL (Base 16)</h4>`;
         html += `<p>We repeatedly divide our decimal number by 16. If any remainder is 10 or bigger, we swap it for a standard textbook letter label (A=10, B=11...):</p>`;
         html += `<div class='table-scroll-wrapper'><table class='step-table'><tr><th>Division Formula</th><th>Whole Quotient</th><th>Leftover Remainder</th></tr>`;
         let hTemp = internalDecimalValue;
