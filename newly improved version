@@ -4,24 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Number System Hub</title>
-    <!-- Textbook Quality Typography Embedding -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Open+Sans:wght@400;600&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-primary: #121214;       /* Pure Obsidian Canvas */
-            --bg-surface: #1E1A2A;       /* Muted Deep Purple Cards */
-            --accent-dark: #A5B4FC;      /* Pale Lavender Blue Tones */
-            --accent-muted: #5650A6;     /* Deep Royal Secondary */
-            --accent-fresh: #241D52;     /* Dark Velvet Tint */
-            --text-main: #EAEAEA;        /* Soft Off-White Core Typography */
-            --text-muted: #A3A3C2;       /* Relaxed Slate Annotation */
-            --text-light: #121214;       /* Heavy Core Overlays */
-            --gray-disabled: #181522;    /* Recessed Inactive Key Mask */
-            --border: #3A355C;           /* High-Definition Divider Linework */
-            --correct: #81C784;          /* Soft Emerald Glowing Status */
-            --incorrect: #FF8A80;        /* Soft Crimson Fault Marker */
+            --bg-primary: #121214;       
+            --bg-surface: #1E1A2A;       
+            --accent-dark: #A5B4FC;      
+            --accent-muted: #5650A6;     
+            --accent-fresh: #241D52;     
+            --text-main: #EAEAEA;        
+            --text-muted: #A3A3C2;       
+            --text-light: #121214;       
+            --gray-disabled: #181522;    
+            --border: #3A355C;           
+            --correct: #81C784;          
+            --incorrect: #FF8A80;        
         }
 
         * {
@@ -345,10 +344,8 @@
             border-radius: 10px;
             padding: 20px;
             margin-bottom: 24px;
-        }
-
-        .conversion-block:last-child {
-            margin-bottom: 0;
+            width: 100%;
+            overflow: hidden;
         }
 
         .conversion-block h4 {
@@ -362,15 +359,21 @@
             padding-left: 8px;
         }
 
+        /* CRITICAL REPAIR: Prevents tables from extending past layout bounds */
+        .table-scroll-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            margin: 12px 0;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: #151221;
+        }
+
         .visual-box-container {
             display: flex;
             gap: 8px;
-            margin: 14px 0;
-            flex-wrap: wrap;
-            background: #151221;
             padding: 12px;
-            border-radius: 8px;
-            border: 1px solid var(--border);
+            min-width: max-content;
         }
 
         .visual-box {
@@ -386,7 +389,7 @@
             align-items: center;
             border-radius: 6px;
             font-size: 12px;
-            min-width: 65px;
+            min-width: 75px;
         }
 
         .visual-box.active {
@@ -397,15 +400,16 @@
         .step-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 12px;
             font-size: 13px;
             font-family: 'Roboto Mono', monospace;
+            min-width: max-content;
         }
 
         .step-table th, .step-table td {
             border: 1px solid var(--border);
-            padding: 10px;
+            padding: 12px 16px;
             text-align: left;
+            white-space: nowrap;
         }
 
         .step-table th {
@@ -585,7 +589,7 @@
     <header>
         <h1>Number System Hub</h1>
         <p>Interactive 64-Bit Textbook Conceptual Architecture Suite</p>
-        <button class="manual-trigger-btn" onclick="openManual()">📖 User Manual</button>
+        <button class="manual-trigger-btn" onclick="openManual()">User Manual</button>
     </header>
 
     <div class="tabs">
@@ -645,19 +649,18 @@
         </div>
 
         <div class="explanation-trigger-pane">
-            <button class="popup-toggle-btn" id="drawer-toggle-btn" onclick="toggleExplanationDrawer()">👇 Click to Reveal Step-by-Step Explanations Underneath</button>
+            <button class="popup-toggle-btn" id="drawer-toggle-btn" onclick="toggleExplanationDrawer()">Click to Reveal Step-by-Step Explanations Underneath</button>
         </div>
 
         <!-- COLLAPSIBLE EDUCATIONAL CONTAINER -->
         <div class="steps-drawer-modal" id="explanation-drawer">
-            <h3>📖 Deep Conceptual Breakdown Pipeline</h3>
+            <h3>Deep Conceptual Breakdown Pipeline</h3>
             <div id="steps-output">Enter numbers above to compile visual explanation charts.</div>
         </div>
 
-        <div class="summary-table-section">
-            <h3>📊 Quick Conversion Matrix Summary (0 - 15)</h3>
-            <p style="font-size: 13px; margin-bottom: 10px; color: var(--text-muted);">Observe how values lower than 16 pattern sync symmetrically across multi-radix configurations:</p>
-            <table class="step-table" style="margin-top: 0;">
+        <div class="table-scroll-wrapper" style="margin-top: 24px; padding: 20px;">
+            <h3 style="font-family:'Montserrat',sans-serif; color:var(--accent-dark); margin-bottom:10px; font-size:16px;">Quick Conversion Matrix Summary (0 - 15)</h3>
+            <table class="step-table">
                 <thead>
                     <tr>
                         <th>Decimal (DEC)</th>
@@ -683,22 +686,24 @@
             
             <div class="quiz-controls">
                 <div id="quiz-score" style="font-family:'Montserrat',sans-serif; font-weight:600; font-size:15px; color:var(--accent-dark);">Success Register: 0 / 0 (0%)</div>
-                <button class="restart-btn" onclick="resetQuizLogMetrics()">🔄 Reset Progress</button>
+                <button class="restart-btn" onclick="resetQuizLogMetrics()">Reset Progress</button>
             </div>
             
-            <div id="quiz-explanation-box" class="steps-panel" style="margin-top: 24px; display: none; text-align: left;"></div>
+            <div class="table-scroll-wrapper" id="quiz-explanation-wrapper" style="display:none; padding:16px;">
+                <div id="quiz-explanation-box"></div>
+            </div>
         </div>
     </div>
 </div>
 
 <div id="manual-modal" class="modal-overlay" onclick="closeManualOnOverlay(event)">
     <div class="modal-content">
-        <h2>📖 System Operator Manual</h2>
-        <p style="margin-bottom: 12px; font-size: 14px; color: var(--text-muted);">Welcome to the textbook-grade conceptual 64-bit multi-base number execution layout workspace.</p>
+        <h2>System Operator Manual</h2>
+        <p style="margin-bottom: 12px; font-size: 14px; color: var(--text-muted);">Welcome to the textbook-grade 64-bit multi-base number execution layout workspace.</p>
         <ul>
-            <li><b>64-Bit Range Scale Architecture:</b> Standard parsing engines experience truncation at 8 bits or 32 bits. This build utilizes custom arbitrary-precision architecture loops, processing string buffers cleanly all the way up to $2^{64}-1$.</li>
-            <li><b>Reactive Safeguard Keypad:</b> Changing the input mode filters the keypad parameters natively, hiding unauthorized buttons to keep out entry syntax bugs before errors can happen.</li>
-            <li><b>Real-Time Interactive Drawer:</b> Toggle the drawer button to run explicit conversions targeting the current entry state, mapping mathematical step proofs dynamically below.</li>
+            <li>64-Bit Range Scale Architecture: Handles massive integer strings cleanly up to 2<sup>64</sup>-1 using modern precision BigInt processing algorithms.</li>
+            <li>No Overflow Overflow UI Fix: Tables have been wrapped inside scrolling containers to guarantee elements never fly off the screen layout on high values.</li>
+            <li>Reactive Safeguard Keypad: Instantly locks layout choices to completely block syntax mistakes before they can occur.</li>
         </ul>
         <button class="close-modal-btn" onclick="closeManual()">Close Manual Workspace</button>
     </div>
@@ -706,8 +711,8 @@
 <script>
     let activeBaseName = 'DEC';
     let activeRadix = 10;
-    let internalDecimalValue = 0n; // Driven via precise BigInt for absolute 64-bit bounds
-    const MAX_64_BIT = (1n << 64n) - 1n; // 18446744073709551615n
+    let internalDecimalValue = 0n; 
+    const MAX_64_BIT = (1n << 64n) - 1n; 
     let explanationDrawerOpen = false;
 
     let quizCorrect = 0;
@@ -744,11 +749,11 @@
         
         if (explanationDrawerOpen) {
             drawer.style.display = 'block';
-            btn.textContent = "👆 Click to Collapse Mathematical Explanations Pane";
+            btn.textContent = "Click to Collapse Mathematical Explanations Pane";
             generateMathematicalExplanations();
         } else {
             drawer.style.display = 'none';
-            btn.textContent = "👇 Click to Reveal Step-by-Step Explanations Underneath";
+            btn.textContent = "Click to Reveal Step-by-Step Explanations Underneath";
         }
     }
 
@@ -809,7 +814,7 @@
         let parsedValue = parseBigInt(testString, activeRadix);
         
         if (parsedValue > MAX_64_BIT) {
-            alert("Specification Sizing Halt: Target buffer value overruns unsigned 64-bit memory space limits.");
+            alert("Specification Sizing Halt: Target buffer value overruns unsigned 64-bit space limits.");
             return;
         }
 
@@ -821,7 +826,7 @@
     function clearCalculator() {
         internalDecimalValue = 0n;
         updateDisplayValues();
-        document.getElementById('steps-output').innerHTML = "Enter numbers above to compile visual explanation charts.";
+        if (explanationDrawerOpen) generateMathematicalExplanations();
     }
 
     function updateDisplayValues() {
@@ -838,12 +843,12 @@
             return;
         }
 
-        let html = `<p style='margin-bottom:20px; font-family:"Montserrat",sans-serif; font-weight:600; font-size:15px; color:var(--accent-dark); border-bottom:1px dashed var(--border); padding-bottom:8px;'>Current Source Input Mode: ${activeBaseName} (Decimal Size: ${internalDecimalValue.toString(10)})</p>`;
+        let html = `<p style='margin-bottom:20px; font-family:"Montserrat",sans-serif; font-weight:600; font-size:15px; color:var(--accent-dark); border-bottom:1px dashed var(--border); padding-bottom:8px;'>Analyzing Calculations for Decimal Size: ${internalDecimalValue.toString(10)}</p>`;
 
-        // BLOCK 1: EXPLAIN BINARY CONVERSION STEP
-        html += `<div class='conversion-block'><h4>🌐 Converting to BINARY (Base 2)</h4>`;
-        html += `<p>Computers split values into baskets of powers of 2. If the basket weight fits inside our remaining value, we activate it with a <b>1</b>, otherwise we write a <b>0</b>. Here are the active low-order byte columns:</p>`;
-        html += `<div class='visual-box-container'>`;
+        // BLOCK 1: TARGETING BINARY WITH HORIZONTAL SCROLL SAFEGUARDS
+        html += `<div class='conversion-block'><h4>Converting to BINARY (Base 2)</h4>`;
+        html += `<p>Computers split values into baskets of powers of 2. If the basket weight fits inside our remaining value, we activate it with a 1, otherwise we write a 0. Here are the low-order byte columns:</p>`;
+        html += `<div class='table-scroll-wrapper'><div class='visual-box-container'>`;
         let binStr = internalDecimalValue.toString(2);
         let paddingLength = binStr.length < 8 ? 8 : Math.ceil(binStr.length / 8) * 8;
         if (paddingLength > 64) paddingLength = 64;
@@ -858,32 +863,32 @@
             if (labelStr.length > 5) labelStr = "2<sup>" + bitPos + "</sup>";
             html += `<div class='visual-box ${isActive?'active':''}'>${labelStr}<br><small>bit:${completeBinStr[i]}</small></div>`;
         }
-        html += `</div><p style='font-size:14px; margin-top:8px; color:var(--text-muted);'>Full continuous code token string: <span style='font-family:"Roboto Mono", monospace; color:var(--accent-dark);'>${completeBinStr}</span></p></div>`;
+        html += `</div></div><p style='font-size:14px; margin-top:8px; color:var(--text-muted);'>Full continuous code token string: <span style='font-family:"Roboto Mono", monospace; color:var(--accent-dark); word-break: break-all;'>${completeBinStr}</span></p></div>`;
 
-        // BLOCK 2: EXPLAIN DECIMAL CONVERSION STEP
-        html += `<div class='conversion-block'><h4>🔢 Converting to DECIMAL (Base 10)</h4>`;
+        // BLOCK 2: TARGETING DECIMAL WITH SCROLL SAFETY WRAPPERS
+        html += `<div class='conversion-block'><h4>Converting to DECIMAL (Base 10)</h4>`;
         html += `<p>We take each digit symbol from our current number string and multiply it by its place-value column weight:</p>`;
-        html += `<table class='step-table'><tr><th>Source Character</th>`;
+        html += `<div class='table-scroll-wrapper'><table class='step-table'><tr><th>Source Character</th>`;
         let srcRepresentationStr = internalDecimalValue.toString(activeRadix).toUpperCase();
         for(let i=0; i<srcRepresentationStr.length; i++) html += `<td><b>${srcRepresentationStr[i]}</b></td>`;
         html += `</tr><tr><th>Radix Multiplier</th>`;
         for(let i=srcRepresentationStr.length-1; i>=0; i--) html += `<td>${activeRadix}<sup>${i}</sup></td>`;
-        html += `</tr></table><p style='margin-top:12px; font-size:14px;'>Adding these positional products together builds our standard human base-10 value: <b>${internalDecimalValue.toString(10)}</b></p></div>`;
-        // BLOCK 3: EXPLAIN OCTAL CONVERSION STEP
-        html += `<div class='conversion-block'><h4>📦 Converting to OCTAL (Base 8)</h4>`;
+        html += `</tr></table></div><p style='margin-top:12px; font-size:14px;'>Adding these positional products together builds our standard human base-10 value: <b>${internalDecimalValue.toString(10)}</b></p></div>`;
+        // BLOCK 3: TARGETING OCTAL CONVERSION
+        html += `<div class='conversion-block'><h4>Converting to OCTAL (Base 8)</h4>`;
         html += `<p>We repeatedly divide our decimal payload number by 8. We save the remainder from each step, then read them from the bottom row up to get our answer:</p>`;
-        html += `<table class='step-table'><tr><th>Division Formula</th><th>Whole Quotient</th><th>Leftover Remainder</th></tr>`;
+        html += `<div class='table-scroll-wrapper'><table class='step-table'><tr><th>Division Formula</th><th>Whole Quotient</th><th>Leftover Remainder</th></tr>`;
         let oTemp = internalDecimalValue;
         while(oTemp > 0n) {
             html += `<tr><td>${oTemp.toString(10)} ÷ 8</td><td>${(oTemp / 8n).toString(10)}</td><td><b>${(oTemp % 8n).toString(10)}</b></td></tr>`;
             oTemp = oTemp / 8n;
         }
-        html += `</table><p style='margin-top:12px; font-size:14px;'>Resulting base-8 string value: <span style='color:var(--accent-dark); font-weight:bold;'>${internalDecimalValue.toString(8)}</span></p></div>`;
+        html += `</table></div><p style='margin-top:12px; font-size:14px;'>Resulting base-8 string value: <span style='color:var(--accent-dark); font-weight:bold;'>${internalDecimalValue.toString(8)}</span></p></div>`;
 
-        // BLOCK 4: EXPLAIN HEXADECIMAL CONVERSION STEP
-        html += `<div class='conversion-block'><h4>🎨 Converting to HEXADECIMAL (Base 16)</h4>`;
+        // BLOCK 4: TARGETING HEXADECIMAL CONVERSION
+        html += `<div class='conversion-block'><h4>Converting to HEXADECIMAL (Base 16)</h4>`;
         html += `<p>We repeatedly divide our decimal number by 16. If any remainder is 10 or bigger, we swap it for a standard textbook letter label (A=10, B=11...):</p>`;
-        html += `<table class='step-table'><tr><th>Division Formula</th><th>Whole Quotient</th><th>Leftover Remainder</th></tr>`;
+        html += `<div class='table-scroll-wrapper'><table class='step-table'><tr><th>Division Formula</th><th>Whole Quotient</th><th>Leftover Remainder</th></tr>`;
         let hTemp = internalDecimalValue;
         while(hTemp > 0n) {
             let rem = hTemp % 16n;
@@ -891,7 +896,7 @@
             html += `<tr><td>${hTemp.toString(10)} ÷ 16</td><td>${(hTemp / 16n).toString(10)}</td><td><b>${rStr}</b></td></tr>`;
             hTemp = hTemp / 16n;
         }
-        html += `</table><p style='margin-top:12px; font-size:14px;'>Resulting base-16 string value: <span style='color:var(--accent-dark); font-weight:bold;'>${internalDecimalValue.toString(16).toUpperCase()}</span></p></div>`;
+        html += `</table></div><p style='margin-top:12px; font-size:14px;'>Resulting base-16 string value: <span style='color:var(--accent-dark); font-weight:bold;'>${internalDecimalValue.toString(16).toUpperCase()}</span></p></div>`;
 
         outputBox.innerHTML = html;
     }
@@ -931,7 +936,7 @@
         
         document.getElementById('quiz-answer').value = "";
         document.getElementById('quiz-feedback').style.display = "none";
-        document.getElementById('quiz-explanation-box').style.display = "none";
+        document.getElementById('quiz-explanation-wrapper').style.display = "none";
     }
 
     function submitQuizAnswer() {
@@ -964,8 +969,9 @@
     }
 
     function renderQuizExplanation() {
+        const wrapper = document.getElementById('quiz-explanation-wrapper');
         const box = document.getElementById('quiz-explanation-box');
-        box.style.display = "block";
+        wrapper.style.display = "block";
         let html = "<h4>🎓 Step-by-Step Problem Resolution Table:</h4>";
         html += "<p>This problem translates to decimal value size: <b>" + activeQuizDecimalValue.toString(10) + "</b>.</p><table class='step-table'>";
         let calcVal = activeQuizDecimalValue;
