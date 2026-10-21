@@ -4,24 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Number System Hub</title>
-    <!-- Textbook Fonts Integration -->
+    <!-- Textbook Quality Typography Embedding -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Montserrat:wght@400;500;700;800&family=Open+Sans:ital,wght@0,400;0,600;1,400&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Open+Sans:wght@400;600&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Educational Typography Theme Colors */
-            --bg-primary: #121214;       /* Pure Obsidian Background */
-            --bg-surface: #1E1A2A;       /* Muted Deep Purple Structure */
-            --accent-dark: #A5B4FC;      /* Pale Lavender Blue Accent (CTAs) */
-            --accent-muted: #56507A;     /* Soft Structural Purple Tones */
-            --text-main: #EAEAEA;        /* Soft Off-White Textbook Typography */
-            --text-muted: #A8A2B5;       /* Subdued Explanatory Copy Tint */
-            --text-dark: #121214;        /* Dark Obsidian Ink for Light Overlays */
-            --gray-disabled: #161220;    /* Muted Inactive Component Masking */
-            --border: #3A354D;           /* Clean Hairline Grid Dividers */
-            --correct: #81C784;          /* Soft Instructional Affirmation Green */
-            --incorrect: #FF8A80;        /* Soft Instructional Rectification Red */
+            --bg-primary: #121214;       /* Pure Obsidian Canvas */
+            --bg-surface: #1E1A2A;       /* Muted Deep Purple Cards */
+            --accent-dark: #A5B4FC;      /* Pale Lavender Blue Tones */
+            --accent-muted: #5650A6;     /* Deep Royal Secondary */
+            --accent-fresh: #241D52;     /* Dark Velvet Tint */
+            --text-main: #EAEAEA;        /* Soft Off-White Core Typography */
+            --text-muted: #A3A3C2;       /* Relaxed Slate Annotation */
+            --text-light: #121214;       /* Heavy Core Overlays */
+            --gray-disabled: #181522;    /* Recessed Inactive Key Mask */
+            --border: #3A355C;           /* High-Definition Divider Linework */
+            --correct: #81C784;          /* Soft Emerald Glowing Status */
+            --incorrect: #FF8A80;        /* Soft Crimson Fault Marker */
         }
 
         * {
@@ -34,16 +34,16 @@
             background-color: var(--bg-primary);
             color: var(--text-main);
             font-family: 'Open Sans', sans-serif;
-            font-size: 15px;
+            padding: 24px;
             line-height: 1.6;
-            padding: 20px;
         }
+
         .container {
             width: 100%;
-            max-width: 1150px;
+            max-width: 1050px;
             background-color: var(--bg-surface);
-            border-radius: 14px;
-            padding: 28px;
+            border-radius: 20px;
+            padding: 32px;
             margin: 20px auto;
             box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
             border: 1px solid var(--border);
@@ -51,9 +51,9 @@
 
         header {
             text-align: center;
-            margin-bottom: 28px;
-            border-bottom: 2px solid var(--accent-dark);
-            padding-bottom: 18px;
+            margin-bottom: 32px;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 20px;
             position: relative;
         }
 
@@ -61,65 +61,72 @@
             font-family: 'Montserrat', sans-serif;
             font-weight: 800;
             color: var(--accent-dark);
-            font-size: 30px;
-            margin-bottom: 6px;
+            font-size: 32px;
+            margin-bottom: 8px;
             letter-spacing: -0.5px;
         }
 
         header p {
             color: var(--text-muted);
-            font-style: italic;
-            font-size: 14px;
+            font-size: 15px;
         }
-
         .manual-trigger-btn {
             position: absolute;
             right: 0;
-            top: 6px;
+            top: 10px;
             background-color: var(--accent-dark);
-            color: var(--text-dark);
+            color: var(--text-light);
             border: none;
-            padding: 8px 18px;
-            border-radius: 6px;
+            padding: 10px 20px;
+            border-radius: 24px;
             font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
+            font-weight: 600;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
             font-size: 13px;
-            box-shadow: 0 4px 14px rgba(165, 180, 252, 0.2);
-            transition: all 0.2s ease;
+            box-shadow: 0 4px 14px rgba(165, 180, 252, 0.3);
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .manual-trigger-btn:hover {
-            background-color: var(--text-main);
-            transform: translateY(-1px);
+            background-color: #C7D2FE;
+            transform: translateY(-2px);
         }
 
         .tabs {
             display: flex;
-            gap: 10px;
-            margin-bottom: 24px;
+            gap: 12px;
+            margin-bottom: 28px;
         }
 
         .tab-btn {
             flex: 1;
             padding: 14px;
-            background: #161220;
+            background: #151221;
             border: 1px solid var(--border);
             color: var(--text-muted);
             font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            font-size: 13px;
-            letter-spacing: 0.5px;
-            border-radius: 6px;
+            font-weight: 600;
+            font-size: 14px;
+            border-radius: 10px;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.2s;
+        }
+
+        .tab-btn:hover {
+            color: var(--text-main);
+            border-color: var(--accent-dark);
         }
 
         .tab-btn.active {
             background: var(--accent-dark);
-            color: var(--text-dark);
+            color: var(--text-light);
             border-color: var(--accent-dark);
+            box-shadow: 0 4px 16px rgba(165, 180, 252, 0.2);
         }
+
         .tab-content {
             display: none;
         }
@@ -131,21 +138,16 @@
         .calc-layout {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 24px;
-        }
-
-        @media (min-width: 900px) {
-            .calc-layout {
-                grid-template-columns: 1.1fr 1fr;
-            }
+            gap: 28px;
+            margin-bottom: 24px;
         }
 
         .display-panel {
             background: var(--bg-primary);
             padding: 20px;
-            border-radius: 10px;
+            border-radius: 14px;
             margin-bottom: 20px;
-            border: 1px solid var(--border);
+            border: 2px solid var(--border);
         }
 
         .base-row {
@@ -153,7 +155,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 12px;
-            border-bottom: 1px solid rgba(58, 53, 77, 0.4);
+            border-bottom: 1px solid rgba(58, 53, 92, 0.4);
             gap: 16px;
         }
 
@@ -161,59 +163,58 @@
             border-bottom: none;
         }
 
-        .base-label {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            font-size: 13px;
-            color: var(--text-muted);
-            letter-spacing: 0.5px;
+        .base-row.selected {
+            background: rgba(165, 180, 252, 0.06);
+            border-radius: 8px;
+            border-bottom-color: transparent;
         }
 
+        .base-label {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 13px;
+            color: var(--text-muted);
+            width: 50px;
+        }
+
+        .base-row.selected .base-label {
+            color: var(--accent-dark);
+        }
         .value-wrapper {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
             flex-grow: 1;
             justify-content: flex-end;
             min-width: 0;
         }
 
         .base-value {
-            font-size: 21px;
+            font-size: 22px;
             font-family: 'Roboto Mono', monospace;
             font-weight: 700;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            color: var(--accent-dark);
+            color: var(--text-main);
         }
 
         .copy-btn {
             background: var(--bg-surface);
             border: 1px solid var(--border);
             color: var(--accent-dark);
-            padding: 4px 10px;
-            font-size: 11px;
+            padding: 6px 12px;
             font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 6px;
             cursor: pointer;
-            transition: all 0.15s ease;
-            flex-shrink: 0;
+            transition: all 0.2s;
         }
 
         .copy-btn:hover {
             background: var(--accent-muted);
             color: var(--text-main);
-        }
-
-        .base-row.selected {
-            background: rgba(165, 180, 252, 0.05);
-            border-radius: 6px;
-        }
-
-        .base-row.selected .base-label {
-            color: var(--accent-dark);
         }
 
         .base-selector {
@@ -224,7 +225,6 @@
 
         .base-radio {
             flex: 1;
-            text-align: center;
         }
 
         .base-radio input {
@@ -233,21 +233,22 @@
 
         .base-radio label {
             display: block;
-            padding: 12px 6px;
-            background: #161220;
+            padding: 14px 6px;
+            background: #151221;
             border: 1px solid var(--border);
-            border-radius: 6px;
+            border-radius: 8px;
+            text-align: center;
             cursor: pointer;
             font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            font-size: 12px;
+            font-weight: 600;
+            font-size: 13px;
             color: var(--text-muted);
             transition: all 0.2s;
         }
 
         .base-radio input:checked + label {
             background: var(--accent-dark);
-            color: var(--text-dark);
+            color: var(--text-light);
             border-color: var(--accent-dark);
         }
 
@@ -258,87 +259,141 @@
         }
 
         .key {
-            padding: 16px 10px;
-            background: #161220;
+            padding: 20px 10px;
+            background: #151221;
             border: 1px solid var(--border);
             color: var(--text-main);
             font-family: 'Roboto Mono', monospace;
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 700;
-            border-radius: 6px;
+            border-radius: 10px;
             cursor: pointer;
-            transition: background 0.1s;
+            transition: background 0.15s, transform 0.1s;
+        }
+
+        .key:active {
+            transform: scale(0.97);
         }
 
         .key.action-key {
-            background: var(--accent-muted);
-            border-color: rgba(165, 180, 252, 0.2);
+            background: var(--accent-fresh);
+            color: var(--accent-dark);
+            border-color: var(--accent-muted);
         }
 
         .key.clear-key {
-            background: rgba(239, 83, 80, 0.1);
-            color: #ef5350;
-            border-color: rgba(239, 83, 80, 0.2);
+            background: rgba(255, 138, 128, 0.08);
+            color: var(--incorrect);
+            border-color: rgba(255, 138, 128, 0.2);
         }
 
         .key:disabled, .key.grayed-out {
             background: var(--gray-disabled) !important;
-            color: #3D384D !important;
-            border-color: #14111E !important;
+            color: #3D3552 !important;
+            border-color: #151221 !important;
             opacity: 0.3;
             cursor: not-allowed;
-            pointer-events: none;
+            transform: none !important;
         }
-        .steps-panel {
-            background: var(--bg-primary);
-            padding: 22px;
-            border-radius: 10px;
-            border: 1px solid var(--border);
-            max-height: 560px;
-            overflow-y: auto;
+        .explanation-trigger-pane {
+            text-align: center;
+            margin: 12px 0;
         }
 
-        .steps-panel h3 {
+        .popup-toggle-btn {
+            background: var(--accent-fresh);
+            border: 2px solid var(--accent-dark);
+            color: var(--accent-dark);
+            padding: 14px 28px;
             font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            font-size: 16px;
+            font-weight: 600;
+            font-size: 15px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .popup-toggle-btn:hover {
+            background: var(--accent-dark);
+            color: var(--text-light);
+            transform: translateY(-2px);
+        }
+
+        .steps-drawer-modal {
+            background: #161322;
+            padding: 24px;
+            border-radius: 16px;
+            border: 2px solid var(--accent-dark);
+            margin-top: 20px;
+            display: none;
+            box-shadow: inset 0 4px 20px rgba(0,0,0,0.4);
+        }
+
+        .steps-drawer-modal h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            margin-bottom: 20px;
             color: var(--accent-dark);
-            margin-bottom: 14px;
             border-bottom: 1px solid var(--border);
-            padding-bottom: 6px;
+            padding-bottom: 8px;
         }
 
-        .textbook-text {
-            font-size: 14.5px;
-            color: var(--text-main);
-            margin-bottom: 14px;
-            text-align: justify;
+        .conversion-block {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 16px;
+            margin-bottom: 20px;
         }
 
-        .textbook-text b {
+        .conversion-block:last-child {
+            margin-bottom: 0;
+        }
+
+        .conversion-block h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15px;
             color: var(--accent-dark);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .textbook-example {
-            background: #161220;
-            border-left: 3px solid var(--accent-dark);
-            padding: 12px;
-            margin: 14px 0;
-            font-size: 13.5px;
-            border-radius: 0 6px 6px 0;
+        .visual-box-container {
+            display: flex;
+            gap: 6px;
+            margin: 12px 0;
+            flex-wrap: wrap;
         }
 
-        .textbook-example p {
+        .visual-box {
+            background: var(--accent-fresh);
+            border: 1px solid var(--accent-dark);
+            color: var(--accent-dark);
             font-family: 'Roboto Mono', monospace;
-            color: var(--text-muted);
+            font-weight: 700;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .visual-box.active {
+            background: var(--accent-dark);
+            color: var(--text-light);
         }
 
         .step-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 14px 0;
+            margin-top: 10px;
             font-size: 13px;
-            background: #161220;
+            font-family: 'Roboto Mono', monospace;
         }
 
         .step-table th, .step-table td {
@@ -348,69 +403,42 @@
         }
 
         .step-table th {
-            background: var(--accent-muted);
-            color: var(--text-main);
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-        }
-
-        .step-table td {
-            font-family: 'Roboto Mono', monospace;
-        }
-
-        .textbook-note {
-            font-size: 12px;
+            background: rgba(165, 180, 252, 0.08);
             color: var(--text-muted);
-            font-style: italic;
-            margin-top: 6px;
-        }
-
-        .summary-table-section {
-            margin-top: 28px;
-            background: var(--bg-primary);
-            padding: 20px;
-            border-radius: 10px;
-            border: 1px solid var(--border);
-        }
-
-        .summary-table-section h3 {
             font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            font-size: 16px;
-            margin-bottom: 10px;
-            color: var(--accent-dark);
+            font-weight: 600;
         }
 
         .quiz-card {
             background: var(--bg-primary);
-            padding: 28px;
-            border-radius: 10px;
-            border: 1px solid var(--border);
+            padding: 32px;
+            border-radius: 16px;
+            border: 2px solid var(--border);
             text-align: center;
         }
 
         .quiz-question {
-            font-size: 18px;
+            font-size: 20px;
             margin-bottom: 20px;
+            font-family: 'Open Sans', sans-serif;
         }
 
         .quiz-input-group {
             display: flex;
-            max-width: 420px;
+            max-width: 440px;
             margin: 0 auto 20px auto;
             gap: 10px;
         }
 
         .quiz-field {
             flex: 1;
-            padding: 12px;
-            background: #161220;
+            padding: 14px;
+            background: #151221;
             border: 1px solid var(--border);
-            color: var(--text-main);
+            color: #fff;
+            font-size: 20px;
             font-family: 'Roboto Mono', monospace;
-            font-size: 18px;
-            font-weight: 700;
-            border-radius: 6px;
+            border-radius: 8px;
             text-transform: uppercase;
             text-align: center;
             outline: none;
@@ -421,51 +449,62 @@
         }
 
         .quiz-submit {
-            padding: 12px 28px;
+            padding: 14px 28px;
             background: var(--accent-dark);
             border: none;
-            color: var(--text-dark);
+            color: var(--text-light);
             font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            border-radius: 6px;
+            font-weight: 600;
+            border-radius: 8px;
             cursor: pointer;
-            transition: opacity 0.2s;
         }
 
-        .quiz-submit:hover {
-            opacity: 0.9;
+        .quiz-controls {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 16px;
+            align-items: center;
+        }
+
+        .restart-btn {
+            background: transparent;
+            border: 1px solid var(--incorrect);
+            color: var(--incorrect);
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .restart-btn:hover {
+            background: rgba(255, 138, 128, 0.1);
         }
 
         .feedback-banner {
             padding: 14px;
-            border-radius: 6px;
-            margin-top: 14px;
+            border-radius: 8px;
+            margin-top: 16px;
             font-weight: bold;
-            font-size: 14px;
             display: none;
             text-align: left;
         }
 
         .feedback-banner.success {
             display: block;
-            background: rgba(129, 199, 132, 0.1);
+            background: rgba(129, 199, 132, 0.08);
             color: var(--correct);
             border-left: 4px solid var(--correct);
         }
 
         .feedback-banner.error {
             display: block;
-            background: rgba(255, 138, 128, 0.1);
+            background: rgba(255, 138, 128, 0.08);
             color: var(--incorrect);
             border-left: 4px solid var(--incorrect);
-        }
-
-        .score-counter {
-            font-size: 14px;
-            color: var(--text-muted);
-            margin-top: 14px;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
         }
 
         .modal-overlay {
@@ -474,68 +513,49 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.75);
+            background: rgba(0, 0, 0, 0.7);
             display: none;
             justify-content: center;
             align-items: center;
             z-index: 1000;
-            padding: 15px;
             backdrop-filter: blur(4px);
         }
 
         .modal-content {
             background: var(--bg-surface);
-            border: 2px solid var(--accent-dark);
-            border-radius: 12px;
-            max-width: 680px;
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            max-width: 600px;
             width: 100%;
-            padding: 26px;
-            box-shadow: 0 24px 64px rgba(0,0,0,0.6);
-            position: relative;
+            padding: 28px;
             max-height: 85vh;
             overflow-y: auto;
         }
 
         .modal-content h2 {
             font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
             color: var(--accent-dark);
-            margin-bottom: 14px;
-            border-bottom: 2px solid var(--accent-muted);
-            padding-bottom: 6px;
-            font-size: 22px;
+            margin-bottom: 16px;
+            font-size: 24px;
         }
 
-        .modal-content h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            margin: 16px 0 6px 0;
-            font-size: 15px;
-            color: var(--accent-dark);
-        }
-
-        .modal-content p, .modal-content li {
-            font-size: 14px;
-            line-height: 1.6;
+        .modal-content li {
+            margin-left: 20px;
             margin-bottom: 8px;
-            color: var(--text-main);
-        }
-
-        .modal-content ul {
-            margin-left: 22px;
+            font-size: 14px;
         }
 
         .close-modal-btn {
-            background-color: var(--accent-dark);
-            color: var(--text-dark);
+            background: var(--accent-dark);
+            color: var(--text-light);
             border: none;
-            padding: 10px 22px;
+            padding: 10px 20px;
             border-radius: 6px;
             font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
+            font-weight: 600;
+            margin-top: 20px;
             cursor: pointer;
             float: right;
-            margin-top: 15px;
         }
     </style>
 </head>
@@ -544,16 +564,16 @@
 <div class="container">
     <header>
         <h1>Number System Hub</h1>
-        <p>A Structured Introduction to Digital Logics & Radix Algebra</p>
+        <p>Interactive Computer Science Conceptual Workspace</p>
         <button class="manual-trigger-btn" onclick="openManual()">📖 User Manual</button>
     </header>
 
     <div class="tabs">
-        <button id="btn-tab-calc" class="tab-btn active" onclick="switchTab('calc')">Interactive Laboratory</button>
-        <button id="btn-tab-quiz" class="tab-btn" onclick="switchTab('quiz')">Academic Assessment</button>
+        <button id="btn-tab-calc" class="tab-btn active" onclick="switchTab('calc')">Interactive Converter Platform</button>
+        <button id="btn-tab-quiz" class="tab-btn" onclick="switchTab('quiz')">Self-Assessment Challenge Lab</button>
     </div>
 
-    <!-- CALCULATOR CONTENT -->
+    <!-- CALC SHEET INTERFACE -->
     <div id="calc-tab" class="tab-content active">
         <div class="calc-layout">
             <div>
@@ -577,34 +597,10 @@
                 </div>
 
                 <div class="display-panel">
-                    <div class="base-row" id="row-BIN">
-                        <span class="base-label">BIN</span>
-                        <div class="value-wrapper">
-                            <span class="base-value" id="val-BIN">0</span>
-                            <button class="copy-btn" onclick="copyValue('val-BIN')">Copy</button>
-                        </div>
-                    </div>
-                    <div class="base-row" id="row-OCT">
-                        <span class="base-label">OCT</span>
-                        <div class="value-wrapper">
-                            <span class="base-value" id="val-OCT">0</span>
-                            <button class="copy-btn" onclick="copyValue('val-OCT')">Copy</button>
-                        </div>
-                    </div>
-                    <div class="base-row" id="row-DEC">
-                        <span class="base-label">DEC</span>
-                        <div class="value-wrapper">
-                            <span class="base-value" id="val-DEC">0</span>
-                            <button class="copy-btn" onclick="copyValue('val-DEC')">Copy</button>
-                        </div>
-                    </div>
-                    <div class="base-row" id="row-HEX">
-                        <span class="base-label">HEX</span>
-                        <div class="value-wrapper">
-                            <span class="base-value" id="val-HEX">0</span>
-                            <button class="copy-btn" onclick="copyValue('val-HEX')">Copy</button>
-                        </div>
-                    </div>
+                    <div class="base-row" id="row-BIN"><span class="base-label">BIN</span><div class="value-wrapper"><span class="base-value" id="val-BIN">0</span><button class="copy-btn" onclick="copyValue('val-BIN')">Copy</button></div></div>
+                    <div class="base-row" id="row-OCT"><span class="base-label">OCT</span><div class="value-wrapper"><span class="base-value" id="val-OCT">0</span><button class="copy-btn" onclick="copyValue('val-OCT')">Copy</button></div></div>
+                    <div class="base-row" id="row-DEC"><span class="base-label">DEC</span><div class="value-wrapper"><span class="base-value" id="val-DEC">0</span><button class="copy-btn" onclick="copyValue('val-DEC')">Copy</button></div></div>
+                    <div class="base-row" id="row-HEX"><span class="base-label">HEX</span><div class="value-wrapper"><span class="base-value" id="val-HEX">0</span><button class="copy-btn" onclick="copyValue('val-HEX')">Copy</button></div></div>
                 </div>
 
                 <div class="keypad">
@@ -627,48 +623,33 @@
                     <button class="key" style="grid-column: span 4;" onclick="pressKey('0')">0</button>
                 </div>
             </div>
-            <div>
-                <div class="steps-panel" style="margin-bottom: 16px;">
-                    <div id="base-explanation-box" class="textbook-text"></div>
-                </div>
-                <div class="steps-panel">
-                    <h3>Analytical Derivations</h3>
-                    <div id="steps-output" class="textbook-text" style="color: var(--text-muted);">
-                        Select your baseline parameters on the left to reveal corresponding mathematical derivations and place-value structural mappings.
-                    </div>
-                </div>
-            </div>
         </div>
 
-        <div class="summary-table-section">
-            <h3>Reference Matrix Summary (0 - 15 Baseline Progression)</h3>
-            <p class="textbook-text" style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 8px;">
-                Review the comparative structure of standard numerical values across all core architectures. Observe how the characters line up perfectly:
-            </p>
-            <table class="step-table" style="margin-top: 0;">
-                <thead>
-                    <tr>
-                        <th>Decimal (DEC)</th>
-                        <th>Binary (BIN)</th>
-                        <th>Octal (OCT)</th>
-                        <th>Hexadecimal (HEX)</th>
-                    </tr>
-                </thead>
-                <tbody id="summary-table-body"></tbody>
-            </table>
+        <div class="explanation-trigger-pane">
+            <button class="popup-toggle-btn" id="drawer-toggle-btn" onclick="toggleExplanationDrawer()">👇 Click to Reveal Step-by-Step Explanations Underneath</button>
+        </div>
+
+        <!-- COLLAPSIBLE EDUCATIONAL CONTAINER -->
+        <div class="steps-drawer-modal" id="explanation-drawer">
+            <h3>📖 Deep Conceptual Breakdown Pipeline</h3>
+            <div id="steps-output">Enter numbers above to compile visual explanation charts.</div>
         </div>
     </div>
-
-    <!-- QUIZ CONTENT -->
+    <!-- QUIZ PRACTICE MODULE -->
     <div id="quiz-tab" class="tab-content">
         <div class="quiz-card">
-            <div class="quiz-question textbook-text" id="quiz-prompt" style="text-align: center; font-size: 17px;">Generating assignment...</div>
+            <div class="quiz-question" id="quiz-prompt">Generating math problem parameters...</div>
             <div class="quiz-input-group">
-                <input type="text" id="quiz-answer" class="quiz-field" placeholder="Enter solution..." autocomplete="off">
-                <button class="quiz-submit" onclick="submitQuizAnswer()">Submit</button>
+                <input type="text" id="quiz-answer" class="quiz-field" placeholder="Answer string..." autocomplete="off">
+                <button class="quiz-submit" onclick="submitQuizAnswer()">Submit Answer</button>
             </div>
             <div id="quiz-feedback" class="feedback-banner"></div>
-            <div id="quiz-score" class="score-counter">Score: 0 / 0</div>
+            
+            <div class="quiz-controls">
+                <div id="quiz-score" style="font-family:'Montserrat',sans-serif; font-weight:600; font-size:15px; color:var(--accent-dark);">Success Register: 0 / 0 (0%)</div>
+                <button class="restart-btn" onclick="resetQuizLogMetrics()">🔄 Reset Progress</button>
+            </div>
+            
             <div id="quiz-explanation-box" class="steps-panel" style="margin-top: 24px; display: none; text-align: left;"></div>
         </div>
     </div>
@@ -676,42 +657,31 @@
 
 <div id="manual-modal" class="modal-overlay" onclick="closeManualOnOverlay(event)">
     <div class="modal-content">
-        <h2>📖 User Manual & Beginners Guide</h2>
-        <p>This textbook platform serves as an interactive sandbox to study the underlying behavior of digital number networks. Follow this checklist to begin your study session:</p>
-        
-        <h3>🔬 The Laboratory Laboratory</h3>
+        <h2>📖 System Operator Manual</h2>
+        <p style="margin-bottom: 12px; font-size: 14px; color: var(--text-muted);">Welcome to the textbook-grade conceptual number baseline trainer app layout framework.</p>
         <ul>
-            <li><b>Switch Base Anchors:</b> Click any base button (BIN, OCT, DEC, HEX) to choose your target input data layout.</li>
-            <li><b>Observe the Keypad Constraint Engine:</b> Notice how invalid digits are greyed out programmatically! When entering <b>Binary</b>, keys 2–9 and A–F freeze instantly because Base 2 mathematics acknowledges only 0 and 1. This prevents errors as you compose numbers!</li>
-            <li><b>Textbook Derivations:</b> Enter a value and read the derivations screen on the right. It parses your input using clear, textbook-style prose and charts.</li>
-            <li><b>Single-Click Clipboard Save:</b> Click the <b>Copy</b> button right next to any layout display field to lock that translated character string straight onto your system clipboard.</li>
+            <li><b>Reactive Safeguard Keypad:</b> Changing the input configuration radio toggles adapts the physical keypad matrix rules instantly, masking invalid symbols behind dark blocks to eliminate input mistakes entirely.</li>
+            <li><b>Collapsible Pipeline:</b> Click the deep-green button at the bottom of the calculator layout page to smoothly expand the structural mathematical translation loops block beneath.</li>
+            <li><b>Challenge Lab Tracker:</b> Navigate to the quiz portal to answer questions. An automated tracking sequence logs progress, flags failures with step answers, and maintains a clean success percentage.</li>
         </ul>
-
-        <h3>📝 Self-Assessment Practice Mode</h3>
-        <ul>
-            <li>Click the <b>Academic Assessment</b> tab at the top to clear the board.</li>
-            <li>The system dynamically constructs a customized base translation question bounded between 0 and 255.</li>
-            <li>Calculate the conversion manually on your paper and submit your answer. If you get stuck, the application will reveal a complete step-by-step division breakdown table to guide you back to the right answer.</li>
-        </ul>
-        <button class="close-modal-btn" onclick="closeManual()">Return to Laboratory</button>
+        <button class="close-modal-btn" onclick="closeManual()">Close Manual Workspace</button>
     </div>
 </div>
+
 <script>
     let activeBaseName = 'DEC';
     let activeRadix = 10;
     let internalDecimalValue = 0;
+    let explanationDrawerOpen = false;
 
     let quizCorrect = 0;
     let quizTotal = 0;
     let activeQuizAnswerKey = "";
     let activeQuizDecimalValue = 0;
     let activeQuizTargetRadix = 10;
-
     window.onload = function() {
         updateKeypadMasking();
         generateQuizQuestion();
-        buildSummaryConversionMatrix();
-        updateBaseContextExplanation();
     };
 
     function switchTab(tabId) {
@@ -729,24 +699,28 @@
         }
     }
 
-    function openManual() {
-        document.getElementById('manual-modal').style.display = 'flex';
+    function toggleExplanationDrawer() {
+        const drawer = document.getElementById('explanation-drawer');
+        const btn = document.getElementById('drawer-toggle-btn');
+        explanationDrawerOpen = !explanationDrawerOpen;
+        
+        if (explanationDrawerOpen) {
+            drawer.style.display = 'block';
+            btn.textContent = "👆 Click to Collapse Mathematical Explanations Pane";
+        } else {
+            drawer.style.display = 'none';
+            btn.textContent = "👇 Click to Reveal Step-by-Step Explanations Underneath";
+        }
     }
 
-    function closeManual() {
-        document.getElementById('manual-modal').style.display = 'none';
-    }
-
-    function closeManualOnOverlay(e) {
-        if(e.target.id === 'manual-modal') closeManual();
-    }
+    function openManual() { document.getElementById('manual-modal').style.display = 'flex'; }
+    function closeManual() { document.getElementById('manual-modal').style.display = 'none'; }
+    function closeManualOnOverlay(e) { if(e.target.id === 'manual-modal') closeManual(); }
 
     function copyValue(elementId) {
-        const textToCopy = document.getElementById(elementId).textContent;
-        navigator.clipboard.writeText(textToCopy).then(() => {
-            alert("Copied to clipboard: " + textToCopy);
-        }).catch(err => {
-            console.error("Failed to copy text: ", err);
+        const text = document.getElementById(elementId).textContent;
+        navigator.clipboard.writeText(text).then(() => {
+            alert("Copied directly to clipboard: " + text);
         });
     }
 
@@ -764,13 +738,9 @@
             else if (activeBaseName === 'DEC') isAllowed = (val >= '0' && val <= '9');
             else if (activeBaseName === 'HEX') isAllowed = true;
 
-            if (isAllowed) {
-                keyButton.disabled = false;
-                keyButton.classList.remove('grayed-out');
-            } else {
-                keyButton.disabled = true;
-                keyButton.classList.add('grayed-out');
-            }
+            keyButton.disabled = !isAllowed;
+            if (isAllowed) keyButton.classList.remove('grayed-out');
+            else keyButton.classList.add('grayed-out');
         });
     }
 
@@ -780,31 +750,8 @@
         updateKeypadMasking();
         updateDisplayValues();
         generateMathematicalExplanations();
-        updateBaseContextExplanation();
     }
 
-    function updateBaseContextExplanation() {
-        const box = document.getElementById('base-explanation-box');
-        let title = "", details = "";
-        
-        if (activeBaseName === 'BIN') {
-            title = "The Binary Structural Concept (Base 2)";
-            details = "Binary is the internal language of computer circuitry. It uses only two digits, <b>0</b> and <b>1</b>, to represent 'off' and 'on' electrical states. Because there are only two digits, each place value column doubles as you move left, scaling exponentially from 1 to 2, 4, 8, 16, and beyond.";
-        } else if (activeBaseName === 'OCT') {
-            title = "The Octal Structural Concept (Base 8)";
-            details = "Octal utilizes exactly eight positional symbols, numbered <b>0 through 7</b>. In digital architecture, it acts as a shorthand to group long, complex binary strings into neat chunks of three bits each.";
-        } else if (activeBaseName === 'DEC') {
-            title = "The Decimal Structural Concept (Base 10)";
-            details = "Decimal is the baseline counting framework used by humans every day. It features 10 characters, running from <b>0 through 9</b>. Each position increases ten-fold as you move left (1s, 10s, 100s, 1000s), which likely evolved from counting on our ten fingers.";
-        } else if (activeBaseName === 'HEX') {
-            title = "The Hexadecimal Structural Concept (Base 16)";
-            details = "Hexadecimal streamlines complex binary notation by grouping bits into chunks of four. Because it requires 16 unique symbols, it uses digits <b>0–9</b> for the first ten values, and letters <b>A through F</b> to represent values 10 through 15 (where A=10, B=11, C=12, D=13, E=14, F=15).";
-        }
-        
-        box.innerHTML = `<h3 style='color:var(--accent-dark); font-family:\"Montserrat\", sans-serif; margin-bottom:6px;'>${title}</h3><p style='color:var(--text-main); font-size:14px; text-align:justify;'>${details}</p>`;
-    }
-</script>
-<script>
     function pressKey(char) {
         let currentStringValue = document.getElementById(`val-${activeBaseName}`).textContent;
         if (currentStringValue === '0') currentStringValue = '';
@@ -813,7 +760,7 @@
         let parsedValue = parseInt(testString, activeRadix);
         
         if (parsedValue > 255) {
-            alert("Boundary Alert: This system is capped at an 8-bit maximum range of 255.");
+            alert("Boundary Warning: Maximum system design capacity limit is 255 (8-bit scale).");
             return;
         }
 
@@ -825,7 +772,7 @@
     function clearCalculator() {
         internalDecimalValue = 0;
         updateDisplayValues();
-        document.getElementById('steps-output').innerHTML = "Select your baseline parameters on the left to reveal corresponding mathematical derivations and place-value structural mappings.";
+        document.getElementById('steps-output').innerHTML = "Enter numbers above to compile visual explanation charts.";
     }
 
     function updateDisplayValues() {
@@ -834,63 +781,78 @@
         document.getElementById('val-DEC').textContent = internalDecimalValue.toString(10).toUpperCase();
         document.getElementById('val-HEX').textContent = internalDecimalValue.toString(16).toUpperCase();
     }
-
     function generateMathematicalExplanations() {
         const outputBox = document.getElementById('steps-output');
         if (internalDecimalValue === 0) {
-            outputBox.innerHTML = "Value is 0. Conversions remain baseline zero.";
+            outputBox.innerHTML = "Value register evaluates to baseline zero across all conversions.";
             return;
         }
 
-        let html = "<p style='margin-bottom:12px;'>Let's analyze the properties of the baseline decimal value <b>" + internalDecimalValue + "</b>.</p>";
-        html += "<p><b>1. Positional Bit-Weight Evaluation</b><br>To convert a base-10 integer into binary, we test it against standard 8-bit positional weights. We write a <b>1</b> if the weight fits inside our remaining value, and a <b>0</b> if it does not:</p>";
-        
-        html += "<table class='step-table'><thead><tr><th>Bit Weights</th><th>128</th><th>64</th><th>32</th><th>16</th><th>8</th><th>4</th><th>2</th><th>1</th></tr></thead><tbody><tr><td>Code State</td>";
-        
-        let tempVal = internalDecimalValue;
-        for (let w = 128; w >= 1; w = w / 2) {
-            if (tempVal >= w) {
-                html += "<td style='color:var(--accent-dark); font-weight:bold; background: rgba(165,180,252,0.15);'>1</td>";
-                tempVal -= w;
-            } else {
-                html += "<td>0</td>";
+        let html = `<p style='margin-bottom:16px; font-family:"Montserrat",sans-serif; font-weight:600;'>Currently Analyzing Source System Base: <span style='color:var(--accent-dark);'>${activeBaseName}</span> (Decimal Value: ${internalDecimalValue})</p>`;
+
+        // BLOCK A: TRANSLATION LOGS INTO DECIMAL
+        if (activeBaseName !== 'DEC') {
+            html += `<div class='conversion-block'><h4>➡️ Conversion Process Into DECIMAL (Base 10)</h4>`;
+            html += `<p>Think of this like counting tokens grouped into stacks! We multiply each digit symbol by its column weight positional power:</p>`;
+            html += `<table class='step-table'><tr><th>Digit Character</th>`;
+            let str = internalDecimalValue.toString(activeRadix).toUpperCase();
+            for(let i=0; i<str.length; i++) html += `<td><b>${str[i]}</b></td>`;
+            html += `</tr><tr><th>Positional Multiplier</th>`;
+            for(let i=str.length-1; i>=0; i--) html += `<td>${activeRadix}<sup>${i}</sup> (${Math.pow(activeRadix, i)})</td>`;
+            html += `</tr></table><p style='margin-top:10px;'>Summation Equation String: `;
+            let parts = [];
+            for(let i=0; i<str.length; i++) {
+                let d = parseInt(str[i], activeRadix);
+                let p = Math.pow(activeRadix, str.length - 1 - i);
+                parts.push(`(${d} × ${p})`);
             }
-        }
-        html += "</tr></tbody></table>";
-
-        html += "<p><b>2. Successive Remainder Radix Division</b><br>To convert our value into Octal or Hexadecimal, we divide the decimal integer repeatedly by the new target base. We record the integer quotient for the next line, and keep the leftover remainder as our digit:</p>";
-        html += "<table class='step-table'><thead><tr><th>Radix Type</th><th>Division Expression</th><th>Quotient Out</th><th>Remainder</th></tr></thead><tbody>";
-        
-        let octTemp = internalDecimalValue;
-        while (octTemp > 0) {
-            html += "<tr><td>Octal (Base 8)</td><td>" + octTemp + " ÷ 8</td><td>" + Math.floor(octTemp/8) + "</td><td><b>" + (octTemp % 8) + "</b></td></tr>";
-            octTemp = Math.floor(octTemp / 8);
+            html += parts.join(" + ") + ` = <b>${internalDecimalValue}</b></p></div>`;
         }
 
-        let hexTemp = internalDecimalValue;
-        while (hexTemp > 0) {
-            let rem = hexTemp % 16;
-            let hexChar = rem.toString(16).toUpperCase();
-            html += "<tr><td>Hexadecimal (Base 16)</td><td>" + hexTemp + " ÷ 16</td><td>" + Math.floor(hexTemp/16) + "</td><td><b>" + hexChar + " (" + rem + ")</b></td></tr>";
-            hexTemp = Math.floor(hexTemp / 16);
+        // BLOCK B: TRANSLATION LOGS INTO BINARY
+        if (activeBaseName !== 'BIN') {
+            html += `<div class='conversion-block'><h4>➡️ Conversion Process Into BINARY (Base 2)</h4>`;
+            html += `<p>Imagine you have 8 token baskets holding token values 128 down to 1. We fill a basket with a <b>1</b> if our tokens fit inside it, otherwise we leave a <b>0</b>:</p>`;
+            html += `<div class='visual-box-container'>`;
+            let binStr = internalDecimalValue.toString(2).padStart(8, '0');
+            let wCheck = 128;
+            for(let i=0; i<8; i++) {
+                let bit = binStr[i];
+                html += `<div class='visual-box ${bit==='1'?'active':''}'>${wCheck}<br><small>${bit}</small></div>`;
+                wCheck /= 2;
+            }
+            html += `</div><p>Resulting Binary representation notation string value: <b>${binStr}</b></p></div>`;
         }
-        
-        html += "</tbody></table><p class='textbook-note'>Note: Read the remainders from the bottom row upward to build the final converted string!</p>";
+
+        // BLOCK C: TRANSLATION LOGS INTO OCTAL
+        if (activeBaseName !== 'OCT') {
+            html += `<div class='conversion-block'><h4>➡️ Conversion Process Into OCTAL (Base 8)</h4>`;
+            html += `<p>We divide our decimal value size repeatedly by 8. We keep track of the remainder left behind at each station to form our final answer:</p>`;
+            html += `<table class='step-table'><tr><th>Radix Station</th><th>Division Expression</th><th>Integer Quotient</th><th>Station Remainder</th></tr>`;
+            let oTemp = internalDecimalValue;
+            while(oTemp > 0) {
+                html += `<tr><td>Octal (8)</td><td>${oTemp} ÷ 8</td><td>${Math.floor(oTemp/8)}</td><td><b>${oTemp % 8}</b></td></tr>`;
+                oTemp = Math.floor(oTemp / 8);
+            }
+            html += `</table><p style='margin-top:8px;'>Resulting Octal notation string value: <b>${internalDecimalValue.toString(8)}</b></p></div>`;
+        }
+
+        // BLOCK D: TRANSLATION LOGS INTO HEXADECIMAL
+        if (activeBaseName !== 'HEX') {
+            html += `<div class='conversion-block'><h4>➡️ Conversion Process Into HEXADECIMAL (Base 16)</h4>`;
+            html += `<p>We divide the standard decimal value size repeatedly by 16. If a remainder is 10 or higher, we swap it for a standard letter symbol (A=10, B=11...):</p>`;
+            html += `<table class='step-table'><tr><th>Radix Station</th><th>Division Expression</th><th>Integer Quotient</th><th>Station Remainder</th></tr>`;
+            let hTemp = internalDecimalValue;
+            while(hTemp > 0) {
+                let rem = hTemp % 16;
+                let rStr = rem >= 10 ? String.fromCharCode(55 + rem) + ` (${rem})` : rem;
+                html += `<tr><td>Hex (16)</td><td>${hTemp} ÷ 16</td><td>${Math.floor(hTemp/16)}</td><td><b>${rStr}</b></td></tr>`;
+                hTemp = Math.floor(hTemp / 16);
+            }
+            html += `</table><p style='margin-top:8px;'>Resulting Hexadecimal notation string value: <b>${internalDecimalValue.toString(16).toUpperCase()}</b></p></div>`;
+        }
+
         outputBox.innerHTML = html;
-    }
-
-    function buildSummaryConversionMatrix() {
-        const tbody = document.getElementById('summary-table-body');
-        let html = "";
-        for (let i = 0; i <= 15; i++) {
-            html += `<tr>
-                <td><b>${i}</b></td>
-                <td>${i.toString(2).padStart(4, '0')}</td>
-                <td>${i.toString(8)}</td>
-                <td><b>${i.toString(16).toUpperCase()}</b></td>
-            </tr>`;
-        }
-        tbody.innerHTML = html;
     }
 
     function generateQuizQuestion() {
@@ -900,7 +862,6 @@
             { name: "Decimal", radix: 10 },
             { name: "Hexadecimal", radix: 16 }
         ];
-
         let srcIdx = Math.floor(Math.random() * 4);
         let tgtIdx;
         do { tgtIdx = Math.floor(Math.random() * 4); } while (tgtIdx === srcIdx);
@@ -910,7 +871,7 @@
         activeQuizAnswerKey = activeQuizDecimalValue.toString(activeQuizTargetRadix).toUpperCase();
 
         document.getElementById('quiz-prompt').innerHTML = 
-            "Problem Challenge: Convert the <b>" + bases[srcIdx].name + "</b> value <b style='color:var(--accent-dark); font-family:monospace;'>" + activeQuizDecimalValue.toString(bases[srcIdx].radix).toUpperCase() + "</b> into its equivalent notation in the <b>" + bases[tgtIdx].name + "</b> system:";
+            `Convert the source <b>${bases[srcIdx].name}</b> payload value: <span style='color:var(--accent-dark); font-family:"Roboto Mono",monospace; font-size:22px; display:block; margin:6px 0;'>${activeQuizDecimalValue.toString(bases[srcIdx].radix).toUpperCase()}</span> into its equivalent target <b>${bases[tgtIdx].name}</b> string parameter:`;
         
         document.getElementById('quiz-answer').value = "";
         document.getElementById('quiz-feedback').style.display = "none";
@@ -926,31 +887,37 @@
         if(input === activeQuizAnswerKey) {
             quizCorrect++;
             banner.className = "feedback-banner success";
-            banner.textContent = "Correct! Your conversion perfectly satisfies the radix algebra criteria.";
+            banner.textContent = "Evaluation Success! Your calculation logs match system expectations perfectly.";
             banner.style.display = "block";
             setTimeout(generateQuizQuestion, 2000);
         } else {
             banner.className = "feedback-banner error";
-            banner.textContent = "Incorrect. The expected mathematical string solution was: " + activeQuizAnswerKey;
+            banner.textContent = `Incorrect result state string. The expected evaluation key was: ${activeQuizAnswerKey}`;
             banner.style.display = "block";
             renderQuizExplanation();
         }
-        document.getElementById('quiz-score').textContent = "Score: " + quizCorrect + " / " + quizTotal;
+        let pct = quizTotal > 0 ? Math.round((quizCorrect / quizTotal) * 100) : 0;
+        document.getElementById('quiz-score').textContent = `Success Register: ${quizCorrect} / ${quizTotal} (${pct}%)`;
+    }
+
+    function resetQuizLogMetrics() {
+        quizCorrect = 0;
+        quizTotal = 0;
+        document.getElementById('quiz-score').textContent = "Success Register: 0 / 0 (0%)";
+        generateQuizQuestion();
     }
 
     function renderQuizExplanation() {
         const box = document.getElementById('quiz-explanation-box');
         box.style.display = "block";
-        let html = "<h4>🎓 Textbook Remediation Matrix:</h4>";
-        html += "<p>The question prompt targets base decimal value <b>" + activeQuizDecimalValue + "</b>. Here is the successive division tree:</p><table class='step-table'><thead><tr><th>Operation Expression</th><th>Leftover Remainder</th></tr></thead><tbody>";
-        
+        let html = "<h4>🎓 Step-by-Step Problem Resolution Table:</h4>";
+        html += "<p>This problem translates to decimal value size: <b>" + activeQuizDecimalValue + "</b>.</p><table class='step-table'>";
         let calcVal = activeQuizDecimalValue;
         while(calcVal > 0) {
-            let rem = calcVal % activeQuizTargetRadix;
-            html += "<tr><td>" + calcVal + " ÷ " + activeQuizTargetRadix + "</td><td>Remainder: <b>" + rem.toString(activeQuizTargetRadix).toUpperCase() + "</b></td></tr>";
+            html += "<tr><td>" + calcVal + " ÷ " + activeQuizTargetRadix + "</td><td>Station Remainder Leftover Digit: <b>" + (calcVal % activeQuizTargetRadix).toString(activeQuizTargetRadix).toUpperCase() + "</b></td></tr>";
             calcVal = Math.floor(calcVal / activeQuizTargetRadix);
         }
-        html += "</tbody></table><button class='quiz-submit' style='margin-top:12px; width:100%;' onclick='generateQuizQuestion()'>Advance to Next Problem</button>";
+        html += "</table><button class='quiz-submit' style='margin-top:12px; width:100%;' onclick='generateQuizQuestion()'>Load Next Lab Exercise</button>";
         box.innerHTML = html;
     }
 </script>
