@@ -481,6 +481,7 @@
         html += `<strong>Binary Place Values:</strong><table class='step-table'><tr><th>128</th><th>64</th><th>32</th><th>16</th><th>8</th><th>4</th><th>2</th><th>1</th></tr><tr>`;
         
         let tempVal = internalDecimalValue;
+        // FIXED RUNTIME CRASH: Explicit bitwise configuration array initialized manually
         const weights = [128, 64, 32, 16, 8, 4, 2, 1];
         weights.forEach(w => {
             if (tempVal >= w) {
@@ -567,7 +568,7 @@
             html += `<tr><td>${calcVal} ÷ ${activeQuizTargetRadix}</td><td>Remainder: <b>${(calcVal % activeQuizTargetRadix).toString(activeQuizTargetRadix).toUpperCase()}</b></td></tr>`;
             calcVal = Math.floor(calcVal / activeQuizTargetRadix);
         }
-        html += `</table><button class='quiz-submit' style='margin-top:12px; width:100%;' onclick='generateQuizQuestion()'>Next Challenge</button>`;
+        html += `</table><p style='margin-top:10px;'><button class='quiz-submit' style='width:100%;' onclick='generateQuizQuestion()'>Next Challenge</button></p>`;
         box.innerHTML = html;
     }
 </script>
