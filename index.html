@@ -3,70 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Number System Hub</title>
+    <title>Multi-Base Number System Hub</title>
     <style>
         :root {
-            --bg-primary: #121214;
-            --bg-surface: #1e1e24;
+            --bg-primary: #0f1115;
+            --bg-surface: #1a1d24;
+            --bg-panel: #111318;
             --accent: #ff8c00;
-            --text-main: #f5f5f7;
-            --text-muted: #a0a0aa;
-            --gray-disabled: #333338;
+            --accent-hover: #e07b00;
+            --text-main: #f5f6f9;
+            --text-muted: #8e95a5;
+            --gray-disabled: #282c37;
             --correct: #2e7d32;
             --incorrect: #c62828;
+            --border: #2c313c;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
 
         body {
             background-color: var(--bg-primary);
             color: var(--text-main);
             padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
 
         .container {
             width: 100%;
-            max-width: 900px;
+            max-width: 950px;
             background-color: var(--bg-surface);
             border-radius: 16px;
-            padding: 24px;
-            margin: 20px auto;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            padding: 28px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+            border: 1px solid var(--border);
         }
 
         header {
             text-align: center;
             margin-bottom: 24px;
-            border-bottom: 1px solid #333;
-            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 18px;
         }
 
         header h1 {
             color: var(--accent);
-            font-size: 24px;
-            margin-bottom: 8px;
+            font-size: 26px;
+            margin-bottom: 6px;
+            letter-spacing: 0.5px;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 14px;
         }
 
         .tabs {
             display: flex;
-            gap: 8px;
-            margin-bottom: 20px;
+            gap: 10px;
+            margin-bottom: 24px;
+            background: var(--bg-panel);
+            padding: 6px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
         }
 
         .tab-btn {
             flex: 1;
             padding: 12px;
-            background: #2a2a32;
+            background: transparent;
             border: none;
-            color: var(--text-main);
+            color: var(--text-muted);
             font-weight: bold;
-            border-radius: 8px;
+            font-size: 14px;
+            border-radius: 6px;
             cursor: pointer;
+            transition: all 0.2s ease;
         }
 
         .tab-btn.active {
@@ -83,56 +102,72 @@
         }
 
         .guide-box {
-            background: rgba(255, 140, 0, 0.05);
+            background: rgba(255, 140, 0, 0.04);
             border-left: 4px solid var(--accent);
             padding: 16px;
-            border-radius: 4px;
-            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 24px;
             font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .guide-box ul {
+            margin-left: 20px;
+            margin-top: 6px;
         }
 
         .calc-layout {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 20px;
+            gap: 24px;
         }
 
         @media (min-width: 768px) {
             .calc-layout {
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: 1.1fr 1fr;
             }
         }
 
         .display-panel {
-            background: #121214;
-            padding: 16px;
+            background: var(--bg-panel);
+            padding: 20px;
             border-radius: 12px;
-            margin-bottom: 16px;
-            border: 1px solid #2a2a32;
+            margin-bottom: 20px;
+            border: 1px solid var(--border);
         }
 
         .base-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 8px;
-            border-bottom: 1px solid #1e1e24;
+            padding: 10px 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+
+        .base-row:last-child {
+            border-bottom: none;
         }
 
         .base-label {
-            font-weight: bold;
-            font-size: 12px;
+            font-weight: 800;
+            font-size: 13px;
             color: var(--text-muted);
+            letter-spacing: 0.5px;
         }
 
         .base-value {
-            font-size: 18px;
-            font-family: monospace;
+            font-size: 20px;
+            font-family: "SF Mono", SFMono-Regular, Consolas, monospace;
+            font-weight: 600;
+            word-break: break-all;
+            text-align: right;
         }
 
         .base-row.selected {
-            background: rgba(255, 140, 0, 0.1);
-            border-radius: 6px;
+            background: rgba(255, 140, 0, 0.08);
+            border: 1px solid rgba(255, 140, 0, 0.2);
         }
 
         .base-row.selected .base-label {
@@ -141,13 +176,12 @@
 
         .base-selector {
             display: flex;
-            gap: 8px;
-            margin-bottom: 16px;
+            gap: 10px;
+            margin-bottom: 20px;
         }
 
         .base-radio {
             flex: 1;
-            text-align: center;
         }
 
         .base-radio input {
@@ -156,226 +190,204 @@
 
         .base-radio label {
             display: block;
-            padding: 10px;
-            background: #2a2a32;
-            border-radius: 6px;
+            padding: 12px;
+            background: var(--bg-panel);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            text-align: center;
             cursor: pointer;
             font-weight: bold;
-            font-size: 12px;
+            font-size: 13px;
+            color: var(--text-muted);
+            transition: all 0.2s;
         }
 
         .base-radio input:checked + label {
             background: var(--accent);
             color: #000;
+            border-color: var(--accent);
+            box-shadow: 0 4px 12px rgba(255, 140, 0, 0.2);
         }
 
         .keypad {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
+            gap: 10px;
         }
 
         .key {
-            padding: 16px;
-            background: #2a2a32;
-            border: none;
+            padding: 18px 10px;
+            background: var(--bg-panel);
+            border: 1px solid var(--border);
             color: var(--text-main);
-            font-size: 16px;
+            font-size: 18px;
             font-weight: bold;
+            font-family: "SF Mono", Consolas, monospace;
             border-radius: 8px;
             cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .key:active {
+            transform: scale(0.96);
         }
 
         .key.action-key {
-            background: #3a3a45;
+            background: #222630;
             color: var(--accent);
+            border-color: #313745;
         }
 
         .key.clear-key {
-            background: rgba(198, 40, 40, 0.15);
+            background: rgba(198, 40, 40, 0.1);
             color: #ff5252;
+            border-color: rgba(198, 40, 40, 0.2);
         }
 
         .key:disabled, .key.grayed-out {
             background: var(--gray-disabled) !important;
-            color: #55555d !important;
-            opacity: 0.35;
+            color: #4a5160 !important;
+            border-color: #1f222a !important;
+            opacity: 0.25;
             cursor: not-allowed;
+            transform: none !important;
             pointer-events: none;
         }
 
         .steps-panel {
-            background: #121214;
-            padding: 16px;
+            background: var(--bg-panel);
+            padding: 20px;
             border-radius: 12px;
-            border: 1px solid #2a2a32;
-            max-height: 500px;
+            border: 1px solid var(--border);
+            max-height: 540px;
             overflow-y: auto;
+        }
+
+        .steps-panel h3 {
+            font-size: 16px;
+            margin-bottom: 16px;
+            color: var(--accent);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 8px;
+        }
+
+        .step-section {
+            margin-bottom: 20px;
+        }
+
+        .step-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-section h4 {
+            font-size: 14px;
+            margin-bottom: 8px;
+            color: var(--text-main);
         }
 
         .step-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 10px;
+            margin-top: 8px;
             font-size: 13px;
         }
 
         .step-table th, .step-table td {
-            border: 1px solid #333;
-            padding: 8px;
+            border: 1px solid var(--border);
+            padding: 10px;
             text-align: left;
-            font-family: monospace;
+            font-family: "SF Mono", Consolas, monospace;
+        }
+
+        .step-table th {
+            background: rgba(255,255,255,0.02);
+            color: var(--text-muted);
+            font-weight: 600;
         }
 
         .quiz-card {
-            background: #121214;
-            padding: 20px;
+            background: var(--bg-panel);
+            padding: 28px;
             border-radius: 12px;
-            border: 1px solid #2a2a32;
+            border: 1px solid var(--border);
             text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         .quiz-question {
             font-size: 18px;
-            margin-bottom: 16px;
+            margin-bottom: 20px;
+            line-height: 1.6;
         }
 
         .quiz-input-group {
             display: flex;
-            max-width: 400px;
-            margin: 0 auto 16px auto;
-            gap: 8px;
+            max-width: 420px;
+            margin: 0 auto 20px auto;
+            gap: 10px;
         }
 
         .quiz-field {
             flex: 1;
-            padding: 12px;
-            background: #1e1e24;
-            border: 1px solid #333;
+            padding: 14px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
             color: #fff;
-            font-size: 18px;
-            border-radius: 6px;
+            font-size: 20px;
+            font-family: "SF Mono", Consolas, monospace;
+            border-radius: 8px;
             text-transform: uppercase;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .quiz-field:focus {
+            border-color: var(--accent);
         }
 
         .quiz-submit {
-            padding: 12px 24px;
+            padding: 14px 28px;
             background: var(--accent);
             border: none;
             color: #000;
             font-weight: bold;
-            border-radius: 6px;
+            font-size: 15px;
+            border-radius: 8px;
             cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .quiz-submit:hover {
+            background: var(--accent-hover);
         }
 
         .feedback-banner {
-            padding: 12px;
-            border-radius: 6px;
-            margin-top: 12px;
+            padding: 14px;
+            border-radius: 8px;
+            margin-top: 16px;
             font-weight: bold;
+            font-size: 14px;
             display: none;
+            text-align: left;
         }
 
         .feedback-banner.success {
             display: block;
-            background: rgba(46, 125, 50, 0.15);
-            color: #81c784;
+            background: rgba(46, 125, 50, 0.1);
+            color: #a5d6a7;
             border-left: 4px solid var(--correct);
         }
 
         .feedback-banner.error {
             display: block;
-            background: rgba(198, 40, 40, 0.15);
-            color: #e57373;
+            background: rgba(198, 40, 40, 0.1);
+            color: #ef9a9a;
             border-left: 4px solid var(--incorrect);
         }
-    </style>
-</head>
-<body>
-
-<div class="container">
-    <header>
-        <h1>Number System Hub</h1>
-        <p>Interactive Multi-Base Learning Platform</p>
-    </header>
-
-    <div class="tabs">
-        <button id="btn-tab-calc" class="tab-btn active" onclick="switchTab('calc')">Calculator</button>
-        <button id="btn-tab-quiz" class="tab-btn" onclick="switchTab('quiz')">Quiz Practice</button>
-    </div>
-
-    <!-- CALCULATOR LAYER -->
-    <div id="calc-tab" class="tab-content active">
-        <div class="guide-box">
-            💡 Changing the top system option (BIN, OCT, DEC, HEX) will instantly <b>turn unusable keypad buttons gray</b> and block clicks to lock out invalid configurations. Max capability limit is 255 (8-bit).
-        </div>
-
-        <div class="calc-layout">
-            <div>
-                <div class="base-selector">
-                    <div class="base-radio">
-                        <input type="radio" id="src-bin" name="src-base" value="2" onchange="changeActiveBase('BIN', 2)">
-                        <label for="src-bin">BIN</label>
-                    </div>
-                    <div class="base-radio">
-                        <input type="radio" id="src-oct" name="src-base" value="8" onchange="changeActiveBase('OCT', 8)">
-                        <label for="src-oct">OCT</label>
-                    </div>
-                    <div class="base-radio">
-                        <input type="radio" id="src-dec" name="src-base" value="10" checked onchange="changeActiveBase('DEC', 10)">
-                        <label for="src-dec">DEC</label>
-                    </div>
-                    <div class="base-radio">
-                        <input type="radio" id="src-hex" name="src-base" value="16" onchange="changeActiveBase('HEX', 16)">
-                        <label for="src-hex">HEX</label>
-                    </div>
-                </div>
-
-                <div class="display-panel">
-                    <div class="base-row" id="row-BIN"><span class="base-label">BIN</span><span class="base-value" id="val-BIN">0</span></div>
-                    <div class="base-row" id="row-OCT"><span class="base-label">OCT</span><span class="base-value" id="val-OCT">0</span></div>
-                    <div class="base-row" id="row-DEC"><span class="base-label">DEC</span><span class="base-value" id="val-DEC">0</span></div>
-                    <div class="base-row" id="row-HEX"><span class="base-label">HEX</span><span class="base-value" id="val-HEX">0</span></div>
-                </div>
-
-                <div class="keypad">
-                    <button class="key action-key" onclick="pressKey('D')">D</button>
-                    <button class="key action-key" onclick="pressKey('E')">E</button>
-                    <button class="key action-key" onclick="pressKey('F')">F</button>
-                    <button class="key clear-key" onclick="clearCalculator()">AC</button>
-                    <button class="key action-key" onclick="pressKey('A')">A</button>
-                    <button class="key action-key" onclick="pressKey('B')">B</button>
-                    <button class="key action-key" onclick="pressKey('C')">C</button>
-                    <button class="key" onclick="pressKey('9')">9</button>
-                    <button class="key" onclick="pressKey('8')">8</button>
-                    <button class="key" onclick="pressKey('7')">7</button>
-                    <button class="key" onclick="pressKey('6')">6</button>
-                    <button class="key" onclick="pressKey('5')">5</button>
-                    <button class="key" onclick="pressKey('4')">4</button>
-                    <button class="key" onclick="pressKey('3')">3</button>
-                    <button class="key" onclick="pressKey('2')">2</button>
-                    <button class="key" onclick="pressKey('1')">1</button>
-                    <button class="key" style="grid-column: span 4;" onclick="pressKey('0')">0</button>
-                </div>
-            </div>
-
-            <div class="steps-panel">
-                <h3 style="color:var(--accent); margin-bottom:12px;">Step-by-Step Conversion Table</h3>
-                <div id="steps-output">Enter numbers to generate structural calculation data loops.</div>
-            </div>
-        </div>
-    </div>
-
-    <div id="quiz-tab" class="tab-content">
-        <div class="quiz-card">
-            <div class="quiz-question" id="quiz-prompt">Generating question framework...</div>
-            <div class="quiz-input-group">
-                <input type="text" id="quiz-answer" class="quiz-field" placeholder="Answer string...">
-                <button class="quiz-submit" onclick="submitQuizAnswer()">Submit</button>
-            </div>
-            <div id="quiz-feedback" class="feedback-banner"></div>
-            <div id="quiz-score" style="margin-top:12px; font-size:14px; color:var(--text-muted);">Score: 0 / 0</div>
-            <div id="quiz-explanation-box" class="steps-panel" style="margin-top: 20px; display: none; text-align: left;"></div>
-        </div>
-    </div>
-</div>
+.score-counter {
+font-size: 14px;
+color: var(--text-muted);
+margin-top: 16px;
+font-weight: 500;
+}
