@@ -168,6 +168,127 @@
             background: var(--accent);
             color: #000;
         }
+
+        .keypad {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+
+        .key {
+            padding: 16px;
+            background: #2a2a32;
+            border: none;
+            color: var(--text-main);
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .key.action-key {
+            background: #3a3a45;
+            color: var(--accent);
+        }
+
+        .key.clear-key {
+            background: rgba(198, 40, 40, 0.15);
+            color: #ff5252;
+        }
+
+        .key:disabled, .key.grayed-out {
+            background: var(--gray-disabled) !important;
+            color: #55555d !important;
+            opacity: 0.35;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .steps-panel {
+            background: #121214;
+            padding: 16px;
+            border-radius: 12px;
+            border: 1px solid #2a2a32;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .step-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 13px;
+        }
+
+        .step-table th, .step-table td {
+            border: 1px solid #333;
+            padding: 8px;
+            text-align: left;
+            font-family: monospace;
+        }
+
+        .quiz-card {
+            background: #121214;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #2a2a32;
+            text-align: center;
+        }
+
+        .quiz-question {
+            font-size: 18px;
+            margin-bottom: 16px;
+        }
+
+        .quiz-input-group {
+            display: flex;
+            max-width: 400px;
+            margin: 0 auto 16px auto;
+            gap: 8px;
+        }
+
+        .quiz-field {
+            flex: 1;
+            padding: 12px;
+            background: #1e1e24;
+            border: 1px solid #333;
+            color: #fff;
+            font-size: 18px;
+            border-radius: 6px;
+            text-transform: uppercase;
+        }
+
+        .quiz-submit {
+            padding: 12px 24px;
+            background: var(--accent);
+            border: none;
+            color: #000;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .feedback-banner {
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 12px;
+            font-weight: bold;
+            display: none;
+        }
+
+        .feedback-banner.success {
+            display: block;
+            background: rgba(46, 125, 50, 0.15);
+            color: #81c784;
+            border-left: 4px solid var(--correct);
+        }
+
+        .feedback-banner.error {
+            display: block;
+            background: rgba(198, 40, 40, 0.15);
+            color: #e57373;
+            border-left: 4px solid var(--incorrect);
+        }
     </style>
 </head>
 <body>
@@ -218,25 +339,23 @@
                 </div>
 
                 <div class="keypad">
-                    <div style="grid-column: span 4; display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;">
-                        <button class="key action-key" onclick="pressKey('D')">D</button>
-                        <button class="key action-key" onclick="pressKey('E')">E</button>
-                        <button class="key action-key" onclick="pressKey('F')">F</button>
-                        <button class="key clear-key" onclick="clearCalculator()">AC</button>
-                        <button class="key action-key" onclick="pressKey('A')">A</button>
-                        <button class="key action-key" onclick="pressKey('B')">B</button>
-                        <button class="key action-key" onclick="pressKey('C')">C</button>
-                        <button class="key" onclick="pressKey('9')">9</button>
-                        <button class="key" onclick="pressKey('8')">8</button>
-                        <button class="key" onclick="pressKey('7')">7</button>
-                        <button class="key" onclick="pressKey('6')">6</button>
-                        <button class="key" onclick="pressKey('5')">5</button>
-                        <button class="key" onclick="pressKey('4')">4</button>
-                        <button class="key" onclick="pressKey('3')">3</button>
-                        <button class="key" onclick="pressKey('2')">2</button>
-                        <button class="key" onclick="pressKey('1')">1</button>
-                        <button class="key" style="grid-column: span 4;" onclick="pressKey('0')">0</button>
-                    </div>
+                    <button class="key action-key" onclick="pressKey('D')">D</button>
+                    <button class="key action-key" onclick="pressKey('E')">E</button>
+                    <button class="key action-key" onclick="pressKey('F')">F</button>
+                    <button class="key clear-key" onclick="clearCalculator()">AC</button>
+                    <button class="key action-key" onclick="pressKey('A')">A</button>
+                    <button class="key action-key" onclick="pressKey('B')">B</button>
+                    <button class="key action-key" onclick="pressKey('C')">C</button>
+                    <button class="key" onclick="pressKey('9')">9</button>
+                    <button class="key" onclick="pressKey('8')">8</button>
+                    <button class="key" onclick="pressKey('7')">7</button>
+                    <button class="key" onclick="pressKey('6')">6</button>
+                    <button class="key" onclick="pressKey('5')">5</button>
+                    <button class="key" onclick="pressKey('4')">4</button>
+                    <button class="key" onclick="pressKey('3')">3</button>
+                    <button class="key" onclick="pressKey('2')">2</button>
+                    <button class="key" onclick="pressKey('1')">1</button>
+                    <button class="key" style="grid-column: span 4;" onclick="pressKey('0')">0</button>
                 </div>
             </div>
 
@@ -247,7 +366,6 @@
         </div>
     </div>
 
-    <!-- QUIZ LAYER -->
     <div id="quiz-tab" class="tab-content">
         <div class="quiz-card">
             <div class="quiz-question" id="quiz-prompt">Generating question framework...</div>
@@ -261,201 +379,3 @@
         </div>
     </div>
 </div>
-<script>
-    let activeBaseName = 'DEC';
-    let activeRadix = 10;
-    let internalDecimalValue = 0;
-
-    let quizCorrect = 0;
-    let quizTotal = 0;
-    let activeQuizAnswerKey = "";
-    let activeQuizDecimalValue = 0;
-    let activeQuizTargetRadix = 10;
-
-    window.onload = function() {
-        updateKeypadMasking();
-        generateQuizQuestion();
-    };
-
-    function switchTab(tabId) {
-        document.getElementById('calc-tab').classList.remove('active');
-        document.getElementById('quiz-tab').classList.remove('active');
-        document.getElementById('btn-tab-calc').classList.remove('active');
-        document.getElementById('btn-tab-quiz').classList.remove('active');
-        
-        if(tabId === 'calc') {
-            document.getElementById('calc-tab').classList.add('active');
-            document.getElementById('btn-tab-calc').classList.add('active');
-        } else {
-            document.getElementById('quiz-tab').classList.add('active');
-            document.getElementById('btn-tab-quiz').classList.add('active');
-        }
-    }
-
-    function updateKeypadMasking() {
-        document.querySelectorAll('.base-row').forEach(row => row.classList.remove('selected'));
-        document.getElementById(`row-${activeBaseName}`).classList.add('selected');
-
-        document.querySelectorAll('.key').forEach(keyButton => {
-            const val = keyButton.textContent;
-            if (val === 'AC') return;
-            
-            let isAllowed = false;
-            if (activeBaseName === 'BIN') isAllowed = (val === '0' || val === '1');
-            else if (activeBaseName === 'OCT') isAllowed = (val >= '0' && val <= '7');
-            else if (activeBaseName === 'DEC') isAllowed = (val >= '0' && val <= '9');
-            else if (activeBaseName === 'HEX') isAllowed = true;
-
-            if (isAllowed) {
-                keyButton.disabled = false;
-                keyButton.classList.remove('grayed-out');
-            } else {
-                keyButton.disabled = true;
-                keyButton.classList.add('grayed-out');
-            }
-        });
-    }
-
-    function changeActiveBase(baseName, radix) {
-        activeBaseName = baseName;
-        activeRadix = radix;
-        updateKeypadMasking();
-        updateDisplayValues();
-        generateMathematicalExplanations();
-    }
-
-    function pressKey(char) {
-        let currentStringValue = document.getElementById(`val-${activeBaseName}`).textContent;
-        if (currentStringValue === '0') currentStringValue = '';
-        
-        let testString = currentStringValue + char;
-        let parsedValue = parseInt(testString, activeRadix);
-        
-        if (parsedValue > 255) {
-            alert("Error: Maximum educational range limit is 255.");
-            return;
-        }
-
-        internalDecimalValue = parsedValue;
-        updateDisplayValues();
-        generateMathematicalExplanations();
-    }
-
-    function clearCalculator() {
-        internalDecimalValue = 0;
-        updateDisplayValues();
-        document.getElementById('steps-output').innerHTML = "Enter numbers to generate structural calculation data loops.";
-    }
-
-    function updateDisplayValues() {
-        document.getElementById('val-BIN').textContent = internalDecimalValue.toString(2).toUpperCase();
-        document.getElementById('val-OCT').textContent = internalDecimalValue.toString(8).toUpperCase();
-        document.getElementById('val-DEC').textContent = internalDecimalValue.toString(10).toUpperCase();
-        document.getElementById('val-HEX').textContent = internalDecimalValue.toString(16).toUpperCase();
-    }
-
-    function generateMathematicalExplanations() {
-        const outputBox = document.getElementById('steps-output');
-        if (internalDecimalValue === 0) {
-            outputBox.innerHTML = "Value is 0. Conversions remain baseline zero.";
-            return;
-        }
-
-        let html = `<p>Analyzing Decimal Value: <b>${internalDecimalValue}</b></p><br>`;
-        html += `<strong>Binary Place Values:</strong><table class='step-table'><tr><th>128</th><th>64</th><th>32</th><th>16</th><th>8</th><th>4</th><th>2</th><th>1</th></tr><tr>`;
-        
-        let tempVal = internalDecimalValue;
-        let checkWeights =;
-        
-        for (let i = 0; i < checkWeights.length; i++) {
-            let w = checkWeights[i];
-            if (tempVal >= w) {
-                html += `<td style='color:var(--accent); font-weight:bold;'>1</td>`;
-                tempVal -= w;
-            } else {
-                html += `<td>0</td>`;
-            }
-        }
-        html += `</tr></table><br>`;
-
-        html += `<strong>Successive Remainder Loop Chain:</strong><table class='step-table'><tr><th>Base</th><th>Division</th><th>Quotient</th><th>Remainder</th></tr>`;
-        
-        let octTemp = internalDecimalValue;
-        while (octTemp > 0) {
-            html += `<tr><td>Octal (8)</td><td>${octTemp} ÷ 8</td><td>${Math.floor(octTemp/8)}</td><td><b>${octTemp % 8}</b></td></tr>`;
-            octTemp = Math.floor(octTemp / 8);
-        }
-
-        let hexTemp = internalDecimalValue;
-        while (hexTemp > 0) {
-            let rem = hexTemp % 16;
-            html += `<tr><td>Hex (16)</td><td>${hexTemp} ÷ 16</td><td>${Math.floor(hexTemp/16)}</td><td><b>${rem.toString(16).toUpperCase()}</b></td></tr>`;
-            hexTemp = Math.floor(hexTemp / 16);
-        }
-        
-        html += `</table>`;
-        outputBox.innerHTML = html;
-    }
-
-    function generateQuizQuestion() {
-        const bases = [
-            { name: "Binary", radix: 2 },
-            { name: "Octal", radix: 8 },
-            { name: "Decimal", radix: 10 },
-            { name: "Hexadecimal", radix: 16 }
-        ];
-
-        let srcIdx = Math.floor(Math.random() * 4);
-        let tgtIdx;
-        do { tgtIdx = Math.floor(Math.random() * 4); } while (tgtIdx === srcIdx);
-
-        activeQuizDecimalValue = Math.floor(Math.random() * 254) + 1;
-        activeQuizTargetRadix = bases[tgtIdx].radix;
-        activeQuizAnswerKey = activeQuizDecimalValue.toString(activeQuizTargetRadix).toUpperCase();
-
-        document.getElementById('quiz-prompt').innerHTML = 
-            `Convert the <b>${bases[srcIdx].name}</b> value: <span style='color:var(--accent); font-family:monospace; font-size:22px; display:block; margin:8px 0;'>${activeQuizDecimalValue.toString(bases[srcIdx].radix).toUpperCase()}</span> into <b>${bases[tgtIdx].name}</b>`;
-        
-        document.getElementById('quiz-answer').value = "";
-        document.getElementById('quiz-feedback').style.display = "none";
-        document.getElementById('quiz-explanation-box').style.display = "none";
-    }
-
-    function submitQuizAnswer() {
-        const input = document.getElementById('quiz-answer').value.trim().toUpperCase();
-        const banner = document.getElementById('quiz-feedback');
-        if(!input) return;
-
-        quizTotal++;
-        if(input === activeQuizAnswerKey) {
-            quizCorrect++;
-            banner.className = "feedback-banner success";
-            banner.textContent = "Correct! Great job.";
-            banner.style.display = "block";
-            setTimeout(generateQuizQuestion, 2000);
-        } else {
-            banner.className = "feedback-banner error";
-            banner.textContent = `Incorrect. The expected answer string was: ${activeQuizAnswerKey}`;
-            banner.style.display = "block";
-            renderQuizExplanation();
-        }
-        document.getElementById('quiz-score').textContent = `Score: ${quizCorrect} / ${quizTotal}`;
-    }
-
-    function renderQuizExplanation() {
-        const box = document.getElementById('quiz-explanation-box');
-        box.style.display = "block";
-        let html = `<h4>🎓 Learning Review Breakdown:</h4>`;
-        html += `<p>Decimal value size is <b>${activeQuizDecimalValue}</b>.</p><table class='step-table'>`;
-        
-        let calcVal = activeQuizDecimalValue;
-        while(calcVal > 0) {
-            html += `<tr><td>${calcVal} ÷ ${activeQuizTargetRadix}</td><td>Remainder: <b>${(calcVal % activeQuizTargetRadix).toString(activeQuizTargetRadix).toUpperCase()}</b></td></tr>`;
-            calcVal = Math.floor(calcVal / activeQuizTargetRadix);
-        }
-        html += `</table><p style='margin-top:10px;'><button class='quiz-submit' style='width:100%;' onclick='generateQuizQuestion()'>Next Challenge</button></p>`;
-        box.innerHTML = html;
-    }
-</script>
-</body>
-</html>
