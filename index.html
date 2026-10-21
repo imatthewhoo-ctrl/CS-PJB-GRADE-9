@@ -168,125 +168,6 @@
             background: var(--accent);
             color: #000;
         }
-
-        .keypad {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
-        }
-
-        .key {
-            padding: 16px;
-            background: #2a2a32;
-            border: none;
-            color: var(--text-main);
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-
-        .key.action-key {
-            background: #3a3a45;
-            color: var(--accent);
-        }
-
-        .key.clear-key {
-            background: rgba(198, 40, 40, 0.15);
-            color: #ff5252;
-        }
-
-        .key:disabled, .key.grayed-out {
-            background: var(--gray-disabled) !important;
-            color: #55555d !important;
-            opacity: 0.35;
-            cursor: not-allowed;
-            pointer-events: none;
-        }
-
-        .steps-panel {
-            background: #121214;
-            padding: 16px;
-            border-radius: 12px;
-            border: 1px solid #2a2a32;
-        }
-
-        .step-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-            font-size: 13px;
-        }
-
-        .step-table th, .step-table td {
-            border: 1px solid #333;
-            padding: 8px;
-            text-align: left;
-            font-family: monospace;
-        }
-
-        .quiz-card {
-            background: #121214;
-            padding: 20px;
-            border-radius: 12px;
-            border: 1px solid #2a2a32;
-            text-align: center;
-        }
-
-        .quiz-question {
-            font-size: 18px;
-            margin-bottom: 16px;
-        }
-
-        .quiz-input-group {
-            display: flex;
-            max-width: 400px;
-            margin: 0 auto 16px auto;
-            gap: 8px;
-        }
-
-        .quiz-field {
-            flex: 1;
-            padding: 12px;
-            background: #1e1e24;
-            border: 1px solid #333;
-            color: #fff;
-            font-size: 18px;
-            border-radius: 6px;
-            text-transform: uppercase;
-        }
-
-        .quiz-submit {
-            padding: 12px 24px;
-            background: var(--accent);
-            border: none;
-            color: #000;
-            font-weight: bold;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-
-        .feedback-banner {
-            padding: 12px;
-            border-radius: 6px;
-            margin-top: 12px;
-            font-weight: bold;
-            display: none;
-        }
-
-        .feedback-banner.success {
-            display: block;
-            background: rgba(46, 125, 50, 0.15);
-            color: #81c784;
-            border-left: 4px solid var(--correct);
-        }
-
-        .feedback-banner.error {
-            display: block;
-            background: rgba(198, 40, 40, 0.15);
-            color: #e57373;
-            border-left: 4px solid var(--incorrect);
-        }
     </style>
 </head>
 <body>
@@ -305,7 +186,7 @@
     <!-- CALCULATOR LAYER -->
     <div id="calc-tab" class="tab-content active">
         <div class="guide-box">
-            <strong>💡 Dynamic Visual Keypad Guide:</strong> Changing the top system option (BIN, OCT, DEC, HEX) will instantly <b>turn unusable keypad buttons gray</b> and block clicks to lock out invalid configurations. Max capability limit is 255 (8-bit).
+            💡 Changing the top system option (BIN, OCT, DEC, HEX) will instantly <b>turn unusable keypad buttons gray</b> and block clicks to lock out invalid configurations. Max capability limit is 255 (8-bit).
         </div>
 
         <div class="calc-layout">
@@ -337,23 +218,25 @@
                 </div>
 
                 <div class="keypad">
-                    <button class="key action-key" onclick="pressKey('D')">D</button>
-                    <button class="key action-key" onclick="pressKey('E')">E</button>
-                    <button class="key action-key" onclick="pressKey('F')">F</button>
-                    <button class="key clear-key" onclick="clearCalculator()">AC</button>
-                    <button class="key action-key" onclick="pressKey('A')">A</button>
-                    <button class="key action-key" onclick="pressKey('B')">B</button>
-                    <button class="key action-key" onclick="pressKey('C')">C</button>
-                    <button class="key" onclick="pressKey('9')">9</button>
-                    <button class="key" onclick="pressKey('8')">8</button>
-                    <button class="key" onclick="pressKey('7')">7</button>
-                    <button class="key" onclick="pressKey('6')">6</button>
-                    <button class="key" onclick="pressKey('5')">5</button>
-                    <button class="key" onclick="pressKey('4')">4</button>
-                    <button class="key" onclick="pressKey('3')">3</button>
-                    <button class="key" onclick="pressKey('2')">2</button>
-                    <button class="key" onclick="pressKey('1')">1</button>
-                    <button class="key" style="grid-column: span 4;" onclick="pressKey('0')">0</button>
+                    <div style="grid-column: span 4; display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;">
+                        <button class="key action-key" onclick="pressKey('D')">D</button>
+                        <button class="key action-key" onclick="pressKey('E')">E</button>
+                        <button class="key action-key" onclick="pressKey('F')">F</button>
+                        <button class="key clear-key" onclick="clearCalculator()">AC</button>
+                        <button class="key action-key" onclick="pressKey('A')">A</button>
+                        <button class="key action-key" onclick="pressKey('B')">B</button>
+                        <button class="key action-key" onclick="pressKey('C')">C</button>
+                        <button class="key" onclick="pressKey('9')">9</button>
+                        <button class="key" onclick="pressKey('8')">8</button>
+                        <button class="key" onclick="pressKey('7')">7</button>
+                        <button class="key" onclick="pressKey('6')">6</button>
+                        <button class="key" onclick="pressKey('5')">5</button>
+                        <button class="key" onclick="pressKey('4')">4</button>
+                        <button class="key" onclick="pressKey('3')">3</button>
+                        <button class="key" onclick="pressKey('2')">2</button>
+                        <button class="key" onclick="pressKey('1')">1</button>
+                        <button class="key" style="grid-column: span 4;" onclick="pressKey('0')">0</button>
+                    </div>
                 </div>
             </div>
 
@@ -470,6 +353,7 @@
         document.getElementById('val-DEC').textContent = internalDecimalValue.toString(10).toUpperCase();
         document.getElementById('val-HEX').textContent = internalDecimalValue.toString(16).toUpperCase();
     }
+
     function generateMathematicalExplanations() {
         const outputBox = document.getElementById('steps-output');
         if (internalDecimalValue === 0) {
@@ -481,16 +365,17 @@
         html += `<strong>Binary Place Values:</strong><table class='step-table'><tr><th>128</th><th>64</th><th>32</th><th>16</th><th>8</th><th>4</th><th>2</th><th>1</th></tr><tr>`;
         
         let tempVal = internalDecimalValue;
-        // FIXED RUNTIME CRASH: Explicit bitwise configuration array initialized manually
-        const weights = [128, 64, 32, 16, 8, 4, 2, 1];
-        weights.forEach(w => {
+        let checkWeights =;
+        
+        for (let i = 0; i < checkWeights.length; i++) {
+            let w = checkWeights[i];
             if (tempVal >= w) {
                 html += `<td style='color:var(--accent); font-weight:bold;'>1</td>`;
                 tempVal -= w;
             } else {
                 html += `<td>0</td>`;
             }
-        });
+        }
         html += `</tr></table><br>`;
 
         html += `<strong>Successive Remainder Loop Chain:</strong><table class='step-table'><tr><th>Base</th><th>Division</th><th>Quotient</th><th>Remainder</th></tr>`;
