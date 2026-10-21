@@ -37,7 +37,6 @@
             padding: 24px;
             line-height: 1.6;
         }
-
         .container {
             width: 100%;
             max-width: 1050px;
@@ -70,6 +69,7 @@
             color: var(--text-muted);
             font-size: 15px;
         }
+
         .manual-trigger-btn {
             position: absolute;
             right: 0;
@@ -100,7 +100,6 @@
             gap: 12px;
             margin-bottom: 28px;
         }
-
         .tab-btn {
             flex: 1;
             padding: 14px;
@@ -190,13 +189,14 @@
         }
 
         .base-value {
-            font-size: 22px;
+            font-size: 20px;
             font-family: 'Roboto Mono', monospace;
             font-weight: 700;
             white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            overflow-x: auto;
+            text-overflow: clip;
             color: var(--text-main);
+            max-width: 100%;
         }
 
         .copy-btn {
@@ -210,6 +210,7 @@
             border-radius: 6px;
             cursor: pointer;
             transition: all 0.2s;
+            flex-shrink: 0;
         }
 
         .copy-btn:hover {
@@ -251,7 +252,6 @@
             color: var(--text-light);
             border-color: var(--accent-dark);
         }
-
         .keypad {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -295,9 +295,10 @@
             cursor: not-allowed;
             transform: none !important;
         }
+
         .explanation-trigger-pane {
             text-align: center;
-            margin: 12px 0;
+            margin: 20px 0;
         }
 
         .popup-toggle-btn {
@@ -312,14 +313,13 @@
             cursor: pointer;
             transition: all 0.2s ease;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            width: 100%;
         }
 
         .popup-toggle-btn:hover {
             background: var(--accent-dark);
             color: var(--text-light);
-            transform: translateY(-2px);
         }
-
         .steps-drawer-modal {
             background: #161322;
             padding: 24px;
@@ -343,8 +343,8 @@
             background: var(--bg-primary);
             border: 1px solid var(--border);
             border-radius: 10px;
-            padding: 16px;
-            margin-bottom: 20px;
+            padding: 20px;
+            margin-bottom: 24px;
         }
 
         .conversion-block:last-child {
@@ -353,19 +353,24 @@
 
         .conversion-block h4 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 15px;
+            font-size: 16px;
             color: var(--accent-dark);
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-left: 4px solid var(--accent-dark);
+            padding-left: 8px;
         }
 
         .visual-box-container {
             display: flex;
-            gap: 6px;
-            margin: 12px 0;
+            gap: 8px;
+            margin: 14px 0;
             flex-wrap: wrap;
+            background: #151221;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
         }
 
         .visual-box {
@@ -374,13 +379,14 @@
             color: var(--accent-dark);
             font-family: 'Roboto Mono', monospace;
             font-weight: 700;
-            width: 36px;
-            height: 36px;
+            padding: 8px 14px;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             border-radius: 6px;
-            font-size: 14px;
+            font-size: 12px;
+            min-width: 65px;
         }
 
         .visual-box.active {
@@ -391,7 +397,7 @@
         .step-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 10px;
+            margin-top: 12px;
             font-size: 13px;
             font-family: 'Roboto Mono', monospace;
         }
@@ -407,6 +413,20 @@
             color: var(--text-muted);
             font-family: 'Montserrat', sans-serif;
             font-weight: 600;
+        }
+        .summary-table-section {
+            margin-top: 24px;
+            background: var(--bg-primary);
+            padding: 20px;
+            border-radius: 12px;
+            border: 2px solid var(--border);
+        }
+
+        .summary-table-section h3 {
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: var(--accent-dark);
         }
 
         .quiz-card {
@@ -564,7 +584,7 @@
 <div class="container">
     <header>
         <h1>Number System Hub</h1>
-        <p>Interactive Computer Science Conceptual Workspace</p>
+        <p>Interactive 64-Bit Textbook Conceptual Architecture Suite</p>
         <button class="manual-trigger-btn" onclick="openManual()">📖 User Manual</button>
     </header>
 
@@ -602,7 +622,6 @@
                     <div class="base-row" id="row-DEC"><span class="base-label">DEC</span><div class="value-wrapper"><span class="base-value" id="val-DEC">0</span><button class="copy-btn" onclick="copyValue('val-DEC')">Copy</button></div></div>
                     <div class="base-row" id="row-HEX"><span class="base-label">HEX</span><div class="value-wrapper"><span class="base-value" id="val-HEX">0</span><button class="copy-btn" onclick="copyValue('val-HEX')">Copy</button></div></div>
                 </div>
-
                 <div class="keypad">
                     <button class="key action-key" onclick="pressKey('D')">D</button>
                     <button class="key action-key" onclick="pressKey('E')">E</button>
@@ -634,7 +653,24 @@
             <h3>📖 Deep Conceptual Breakdown Pipeline</h3>
             <div id="steps-output">Enter numbers above to compile visual explanation charts.</div>
         </div>
+
+        <div class="summary-table-section">
+            <h3>📊 Quick Conversion Matrix Summary (0 - 15)</h3>
+            <p style="font-size: 13px; margin-bottom: 10px; color: var(--text-muted);">Observe how values lower than 16 pattern sync symmetrically across multi-radix configurations:</p>
+            <table class="step-table" style="margin-top: 0;">
+                <thead>
+                    <tr>
+                        <th>Decimal (DEC)</th>
+                        <th>Binary (BIN)</th>
+                        <th>Octal (OCT)</th>
+                        <th>Hexadecimal (HEX)</th>
+                    </tr>
+                </thead>
+                <tbody id="summary-table-body"></tbody>
+            </table>
+        </div>
     </div>
+
     <!-- QUIZ PRACTICE MODULE -->
     <div id="quiz-tab" class="tab-content">
         <div class="quiz-card">
@@ -658,30 +694,32 @@
 <div id="manual-modal" class="modal-overlay" onclick="closeManualOnOverlay(event)">
     <div class="modal-content">
         <h2>📖 System Operator Manual</h2>
-        <p style="margin-bottom: 12px; font-size: 14px; color: var(--text-muted);">Welcome to the textbook-grade conceptual number baseline trainer app layout framework.</p>
+        <p style="margin-bottom: 12px; font-size: 14px; color: var(--text-muted);">Welcome to the textbook-grade conceptual 64-bit multi-base number execution layout workspace.</p>
         <ul>
-            <li><b>Reactive Safeguard Keypad:</b> Changing the input configuration radio toggles adapts the physical keypad matrix rules instantly, masking invalid symbols behind dark blocks to eliminate input mistakes entirely.</li>
-            <li><b>Collapsible Pipeline:</b> Click the deep-green button at the bottom of the calculator layout page to smoothly expand the structural mathematical translation loops block beneath.</li>
-            <li><b>Challenge Lab Tracker:</b> Navigate to the quiz portal to answer questions. An automated tracking sequence logs progress, flags failures with step answers, and maintains a clean success percentage.</li>
+            <li><b>64-Bit Range Scale Architecture:</b> Standard parsing engines experience truncation at 8 bits or 32 bits. This build utilizes custom arbitrary-precision architecture loops, processing string buffers cleanly all the way up to $2^{64}-1$.</li>
+            <li><b>Reactive Safeguard Keypad:</b> Changing the input mode filters the keypad parameters natively, hiding unauthorized buttons to keep out entry syntax bugs before errors can happen.</li>
+            <li><b>Real-Time Interactive Drawer:</b> Toggle the drawer button to run explicit conversions targeting the current entry state, mapping mathematical step proofs dynamically below.</li>
         </ul>
         <button class="close-modal-btn" onclick="closeManual()">Close Manual Workspace</button>
     </div>
 </div>
-
 <script>
     let activeBaseName = 'DEC';
     let activeRadix = 10;
-    let internalDecimalValue = 0;
+    let internalDecimalValue = 0n; // Driven via precise BigInt for absolute 64-bit bounds
+    const MAX_64_BIT = (1n << 64n) - 1n; // 18446744073709551615n
     let explanationDrawerOpen = false;
 
     let quizCorrect = 0;
     let quizTotal = 0;
     let activeQuizAnswerKey = "";
-    let activeQuizDecimalValue = 0;
+    let activeQuizDecimalValue = 0n;
     let activeQuizTargetRadix = 10;
+
     window.onload = function() {
         updateKeypadMasking();
         generateQuizQuestion();
+        buildSummaryConversionMatrix();
     };
 
     function switchTab(tabId) {
@@ -707,6 +745,7 @@
         if (explanationDrawerOpen) {
             drawer.style.display = 'block';
             btn.textContent = "👆 Click to Collapse Mathematical Explanations Pane";
+            generateMathematicalExplanations();
         } else {
             drawer.style.display = 'none';
             btn.textContent = "👇 Click to Reveal Step-by-Step Explanations Underneath";
@@ -724,6 +763,16 @@
         });
     }
 
+    function parseBigInt(str, radix) {
+        let val = 0n;
+        let chars = "0123456789ABCDEF";
+        for (let i = 0; i < str.length; i++) {
+            let index = chars.indexOf(str[i].toUpperCase());
+            if (index === -1 || index >= radix) continue;
+            val = val * BigInt(radix) + BigInt(index);
+        }
+        return val;
+    }
     function updateKeypadMasking() {
         document.querySelectorAll('.base-row').forEach(row => row.classList.remove('selected'));
         document.getElementById(`row-${activeBaseName}`).classList.add('selected');
@@ -749,7 +798,7 @@
         activeRadix = radix;
         updateKeypadMasking();
         updateDisplayValues();
-        generateMathematicalExplanations();
+        if (explanationDrawerOpen) generateMathematicalExplanations();
     }
 
     function pressKey(char) {
@@ -757,20 +806,20 @@
         if (currentStringValue === '0') currentStringValue = '';
         
         let testString = currentStringValue + char;
-        let parsedValue = parseInt(testString, activeRadix);
+        let parsedValue = parseBigInt(testString, activeRadix);
         
-        if (parsedValue > 255) {
-            alert("Boundary Warning: Maximum system design capacity limit is 255 (8-bit scale).");
+        if (parsedValue > MAX_64_BIT) {
+            alert("Specification Sizing Halt: Target buffer value overruns unsigned 64-bit memory space limits.");
             return;
         }
 
         internalDecimalValue = parsedValue;
         updateDisplayValues();
-        generateMathematicalExplanations();
+        if (explanationDrawerOpen) generateMathematicalExplanations();
     }
 
     function clearCalculator() {
-        internalDecimalValue = 0;
+        internalDecimalValue = 0n;
         updateDisplayValues();
         document.getElementById('steps-output').innerHTML = "Enter numbers above to compile visual explanation charts.";
     }
@@ -781,78 +830,84 @@
         document.getElementById('val-DEC').textContent = internalDecimalValue.toString(10).toUpperCase();
         document.getElementById('val-HEX').textContent = internalDecimalValue.toString(16).toUpperCase();
     }
+
     function generateMathematicalExplanations() {
         const outputBox = document.getElementById('steps-output');
-        if (internalDecimalValue === 0) {
+        if (internalDecimalValue === 0n) {
             outputBox.innerHTML = "Value register evaluates to baseline zero across all conversions.";
             return;
         }
 
-        let html = `<p style='margin-bottom:16px; font-family:"Montserrat",sans-serif; font-weight:600;'>Currently Analyzing Source System Base: <span style='color:var(--accent-dark);'>${activeBaseName}</span> (Decimal Value: ${internalDecimalValue})</p>`;
+        let html = `<p style='margin-bottom:20px; font-family:"Montserrat",sans-serif; font-weight:600; font-size:15px; color:var(--accent-dark); border-bottom:1px dashed var(--border); padding-bottom:8px;'>Current Source Input Mode: ${activeBaseName} (Decimal Size: ${internalDecimalValue.toString(10)})</p>`;
 
-        // BLOCK A: TRANSLATION LOGS INTO DECIMAL
-        if (activeBaseName !== 'DEC') {
-            html += `<div class='conversion-block'><h4>➡️ Conversion Process Into DECIMAL (Base 10)</h4>`;
-            html += `<p>Think of this like counting tokens grouped into stacks! We multiply each digit symbol by its column weight positional power:</p>`;
-            html += `<table class='step-table'><tr><th>Digit Character</th>`;
-            let str = internalDecimalValue.toString(activeRadix).toUpperCase();
-            for(let i=0; i<str.length; i++) html += `<td><b>${str[i]}</b></td>`;
-            html += `</tr><tr><th>Positional Multiplier</th>`;
-            for(let i=str.length-1; i>=0; i--) html += `<td>${activeRadix}<sup>${i}</sup> (${Math.pow(activeRadix, i)})</td>`;
-            html += `</tr></table><p style='margin-top:10px;'>Summation Equation String: `;
-            let parts = [];
-            for(let i=0; i<str.length; i++) {
-                let d = parseInt(str[i], activeRadix);
-                let p = Math.pow(activeRadix, str.length - 1 - i);
-                parts.push(`(${d} × ${p})`);
-            }
-            html += parts.join(" + ") + ` = <b>${internalDecimalValue}</b></p></div>`;
+        // BLOCK 1: EXPLAIN BINARY CONVERSION STEP
+        html += `<div class='conversion-block'><h4>🌐 Converting to BINARY (Base 2)</h4>`;
+        html += `<p>Computers split values into baskets of powers of 2. If the basket weight fits inside our remaining value, we activate it with a <b>1</b>, otherwise we write a <b>0</b>. Here are the active low-order byte columns:</p>`;
+        html += `<div class='visual-box-container'>`;
+        let binStr = internalDecimalValue.toString(2);
+        let paddingLength = binStr.length < 8 ? 8 : Math.ceil(binStr.length / 8) * 8;
+        if (paddingLength > 64) paddingLength = 64;
+        let completeBinStr = binStr.padStart(paddingLength, '0');
+        
+        let displayBitsCount = Math.min(completeBinStr.length, 16);
+        for(let i = completeBinStr.length - displayBitsCount; i < completeBinStr.length; i++) {
+            let bitPos = completeBinStr.length - 1 - i;
+            let weightVal = 1n << BigInt(bitPos);
+            let isActive = completeBinStr[i] === '1';
+            let labelStr = weightVal.toString(10);
+            if (labelStr.length > 5) labelStr = "2<sup>" + bitPos + "</sup>";
+            html += `<div class='visual-box ${isActive?'active':''}'>${labelStr}<br><small>bit:${completeBinStr[i]}</small></div>`;
         }
+        html += `</div><p style='font-size:14px; margin-top:8px; color:var(--text-muted);'>Full continuous code token string: <span style='font-family:"Roboto Mono", monospace; color:var(--accent-dark);'>${completeBinStr}</span></p></div>`;
 
-        // BLOCK B: TRANSLATION LOGS INTO BINARY
-        if (activeBaseName !== 'BIN') {
-            html += `<div class='conversion-block'><h4>➡️ Conversion Process Into BINARY (Base 2)</h4>`;
-            html += `<p>Imagine you have 8 token baskets holding token values 128 down to 1. We fill a basket with a <b>1</b> if our tokens fit inside it, otherwise we leave a <b>0</b>:</p>`;
-            html += `<div class='visual-box-container'>`;
-            let binStr = internalDecimalValue.toString(2).padStart(8, '0');
-            let wCheck = 128;
-            for(let i=0; i<8; i++) {
-                let bit = binStr[i];
-                html += `<div class='visual-box ${bit==='1'?'active':''}'>${wCheck}<br><small>${bit}</small></div>`;
-                wCheck /= 2;
-            }
-            html += `</div><p>Resulting Binary representation notation string value: <b>${binStr}</b></p></div>`;
+        // BLOCK 2: EXPLAIN DECIMAL CONVERSION STEP
+        html += `<div class='conversion-block'><h4>🔢 Converting to DECIMAL (Base 10)</h4>`;
+        html += `<p>We take each digit symbol from our current number string and multiply it by its place-value column weight:</p>`;
+        html += `<table class='step-table'><tr><th>Source Character</th>`;
+        let srcRepresentationStr = internalDecimalValue.toString(activeRadix).toUpperCase();
+        for(let i=0; i<srcRepresentationStr.length; i++) html += `<td><b>${srcRepresentationStr[i]}</b></td>`;
+        html += `</tr><tr><th>Radix Multiplier</th>`;
+        for(let i=srcRepresentationStr.length-1; i>=0; i--) html += `<td>${activeRadix}<sup>${i}</sup></td>`;
+        html += `</tr></table><p style='margin-top:12px; font-size:14px;'>Adding these positional products together builds our standard human base-10 value: <b>${internalDecimalValue.toString(10)}</b></p></div>`;
+        // BLOCK 3: EXPLAIN OCTAL CONVERSION STEP
+        html += `<div class='conversion-block'><h4>📦 Converting to OCTAL (Base 8)</h4>`;
+        html += `<p>We repeatedly divide our decimal payload number by 8. We save the remainder from each step, then read them from the bottom row up to get our answer:</p>`;
+        html += `<table class='step-table'><tr><th>Division Formula</th><th>Whole Quotient</th><th>Leftover Remainder</th></tr>`;
+        let oTemp = internalDecimalValue;
+        while(oTemp > 0n) {
+            html += `<tr><td>${oTemp.toString(10)} ÷ 8</td><td>${(oTemp / 8n).toString(10)}</td><td><b>${(oTemp % 8n).toString(10)}</b></td></tr>`;
+            oTemp = oTemp / 8n;
         }
+        html += `</table><p style='margin-top:12px; font-size:14px;'>Resulting base-8 string value: <span style='color:var(--accent-dark); font-weight:bold;'>${internalDecimalValue.toString(8)}</span></p></div>`;
 
-        // BLOCK C: TRANSLATION LOGS INTO OCTAL
-        if (activeBaseName !== 'OCT') {
-            html += `<div class='conversion-block'><h4>➡️ Conversion Process Into OCTAL (Base 8)</h4>`;
-            html += `<p>We divide our decimal value size repeatedly by 8. We keep track of the remainder left behind at each station to form our final answer:</p>`;
-            html += `<table class='step-table'><tr><th>Radix Station</th><th>Division Expression</th><th>Integer Quotient</th><th>Station Remainder</th></tr>`;
-            let oTemp = internalDecimalValue;
-            while(oTemp > 0) {
-                html += `<tr><td>Octal (8)</td><td>${oTemp} ÷ 8</td><td>${Math.floor(oTemp/8)}</td><td><b>${oTemp % 8}</b></td></tr>`;
-                oTemp = Math.floor(oTemp / 8);
-            }
-            html += `</table><p style='margin-top:8px;'>Resulting Octal notation string value: <b>${internalDecimalValue.toString(8)}</b></p></div>`;
+        // BLOCK 4: EXPLAIN HEXADECIMAL CONVERSION STEP
+        html += `<div class='conversion-block'><h4>🎨 Converting to HEXADECIMAL (Base 16)</h4>`;
+        html += `<p>We repeatedly divide our decimal number by 16. If any remainder is 10 or bigger, we swap it for a standard textbook letter label (A=10, B=11...):</p>`;
+        html += `<table class='step-table'><tr><th>Division Formula</th><th>Whole Quotient</th><th>Leftover Remainder</th></tr>`;
+        let hTemp = internalDecimalValue;
+        while(hTemp > 0n) {
+            let rem = hTemp % 16n;
+            let rStr = rem >= 10n ? String.fromCharCode(55 + Number(rem)) + ` (${rem.toString(10)})` : rem.toString(10);
+            html += `<tr><td>${hTemp.toString(10)} ÷ 16</td><td>${(hTemp / 16n).toString(10)}</td><td><b>${rStr}</b></td></tr>`;
+            hTemp = hTemp / 16n;
         }
-
-        // BLOCK D: TRANSLATION LOGS INTO HEXADECIMAL
-        if (activeBaseName !== 'HEX') {
-            html += `<div class='conversion-block'><h4>➡️ Conversion Process Into HEXADECIMAL (Base 16)</h4>`;
-            html += `<p>We divide the standard decimal value size repeatedly by 16. If a remainder is 10 or higher, we swap it for a standard letter symbol (A=10, B=11...):</p>`;
-            html += `<table class='step-table'><tr><th>Radix Station</th><th>Division Expression</th><th>Integer Quotient</th><th>Station Remainder</th></tr>`;
-            let hTemp = internalDecimalValue;
-            while(hTemp > 0) {
-                let rem = hTemp % 16;
-                let rStr = rem >= 10 ? String.fromCharCode(55 + rem) + ` (${rem})` : rem;
-                html += `<tr><td>Hex (16)</td><td>${hTemp} ÷ 16</td><td>${Math.floor(hTemp/16)}</td><td><b>${rStr}</b></td></tr>`;
-                hTemp = Math.floor(hTemp / 16);
-            }
-            html += `</table><p style='margin-top:8px;'>Resulting Hexadecimal notation string value: <b>${internalDecimalValue.toString(16).toUpperCase()}</b></p></div>`;
-        }
+        html += `</table><p style='margin-top:12px; font-size:14px;'>Resulting base-16 string value: <span style='color:var(--accent-dark); font-weight:bold;'>${internalDecimalValue.toString(16).toUpperCase()}</span></p></div>`;
 
         outputBox.innerHTML = html;
+    }
+
+    function buildSummaryConversionMatrix() {
+        const tbody = document.getElementById('summary-table-body');
+        let html = "";
+        for (let i = 0; i <= 15; i++) {
+            html += `<tr>
+                <td><b>${i}</b></td>
+                <td>${i.toString(2).padStart(4, '0')}</td>
+                <td>${i.toString(8)}</td>
+                <td><b>${i.toString(16).toUpperCase()}</b></td>
+            </tr>`;
+        }
+        tbody.innerHTML = html;
     }
 
     function generateQuizQuestion() {
@@ -866,12 +921,13 @@
         let tgtIdx;
         do { tgtIdx = Math.floor(Math.random() * 4); } while (tgtIdx === srcIdx);
 
-        activeQuizDecimalValue = Math.floor(Math.random() * 254) + 1;
+        let randVal = Math.floor(Math.random() * 254) + 1;
+        activeQuizDecimalValue = BigInt(randVal);
         activeQuizTargetRadix = bases[tgtIdx].radix;
         activeQuizAnswerKey = activeQuizDecimalValue.toString(activeQuizTargetRadix).toUpperCase();
 
         document.getElementById('quiz-prompt').innerHTML = 
-            `Convert the source <b>${bases[srcIdx].name}</b> payload value: <span style='color:var(--accent-dark); font-family:"Roboto Mono",monospace; font-size:22px; display:block; margin:6px 0;'>${activeQuizDecimalValue.toString(bases[srcIdx].radix).toUpperCase()}</span> into its equivalent target <b>${bases[tgtIdx].name}</b> string parameter:`;
+            `Convert the source <b>${bases[srcIdx].name}</b> value: <span style='color:var(--accent-dark); font-family:"Roboto Mono",monospace; font-size:22px; display:block; margin:6px 0;'>${activeQuizDecimalValue.toString(bases[srcIdx].radix).toUpperCase()}</span> into its equivalent target <b>${bases[tgtIdx].name}</b> string parameter:`;
         
         document.getElementById('quiz-answer').value = "";
         document.getElementById('quiz-feedback').style.display = "none";
@@ -892,7 +948,7 @@
             setTimeout(generateQuizQuestion, 2000);
         } else {
             banner.className = "feedback-banner error";
-            banner.textContent = `Incorrect result state string. The expected evaluation key was: ${activeQuizAnswerKey}`;
+            banner.textContent = `Incorrect result string. The expected evaluation key was: ${activeQuizAnswerKey}`;
             banner.style.display = "block";
             renderQuizExplanation();
         }
@@ -911,11 +967,11 @@
         const box = document.getElementById('quiz-explanation-box');
         box.style.display = "block";
         let html = "<h4>🎓 Step-by-Step Problem Resolution Table:</h4>";
-        html += "<p>This problem translates to decimal value size: <b>" + activeQuizDecimalValue + "</b>.</p><table class='step-table'>";
+        html += "<p>This problem translates to decimal value size: <b>" + activeQuizDecimalValue.toString(10) + "</b>.</p><table class='step-table'>";
         let calcVal = activeQuizDecimalValue;
-        while(calcVal > 0) {
-            html += "<tr><td>" + calcVal + " ÷ " + activeQuizTargetRadix + "</td><td>Station Remainder Leftover Digit: <b>" + (calcVal % activeQuizTargetRadix).toString(activeQuizTargetRadix).toUpperCase() + "</b></td></tr>";
-            calcVal = Math.floor(calcVal / activeQuizTargetRadix);
+        while(calcVal > 0n) {
+            html += "<tr><td>" + calcVal.toString(10) + " ÷ " + activeQuizTargetRadix + "</td><td>Station Remainder Leftover Digit: <b>" + (calcVal % BigInt(activeQuizTargetRadix)).toString(activeQuizTargetRadix).toUpperCase() + "</b></td></tr>";
+            calcVal = calcVal / BigInt(activeQuizTargetRadix);
         }
         html += "</table><button class='quiz-submit' style='margin-top:12px; width:100%;' onclick='generateQuizQuestion()'>Load Next Lab Exercise</button>";
         box.innerHTML = html;
