@@ -481,7 +481,7 @@
         html += `<strong>Binary Place Values:</strong><table class='step-table'><tr><th>128</th><th>64</th><th>32</th><th>16</th><th>8</th><th>4</th><th>2</th><th>1</th></tr><tr>`;
         
         let tempVal = internalDecimalValue;
-        const weights =;
+        const weights = [128, 64, 32, 16, 8, 4, 2, 1];
         weights.forEach(w => {
             if (tempVal >= w) {
                 html += `<td style='color:var(--accent); font-weight:bold;'>1</td>`;
